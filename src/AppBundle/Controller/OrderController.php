@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,37 +23,22 @@ class OrderController extends Controller
     /**
      * @Route("/", name="step1")
      * @param Request $request
+     * @param OrderManager $orderManager
      * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function step1Action(Request $request, SessionInterface $session)
+    public function step1Action(Request $request, OrderManager $orderManager, SessionInterface $session)
     {
         //Step 1 : order informations
-        $order = new Order();
-
-        if ($session->has('order')) {
-            $order = $session->get('order');
-        }
+        $order = $orderManager->initOrder();
 
         $form1 = $this->createForm(OrderType::class, $order);
         $form1->handleRequest($request);
 
-        // If datas OK, go to Step 2
+        // If form datas OK, go to Step 2
         if ($form1->isSubmitted() && $form1->isValid()) {
 
-            $session->set('order', $order);
-
-            //Creating empty tickets while number of tickets is less than number of tickets chosen
-            while (count($order->getTickets()) < $order->getNbTickets()) {
-                $ticket = new Ticket();
-                $order->addTicket($ticket);
-            }
-
-            // Delete last X tickets if there are too much (user selects X fewer tickets)
-            while (count($order->getTickets()) > $order->getNbTickets()) {
-                $ticket = $order->getTickets()->last();
-                $order->removeTicket($ticket);
-            }
+            $orderManager->prepareOrder($order);
 
             return $this->redirectToRoute('step2');
         }
@@ -66,11 +52,12 @@ class OrderController extends Controller
     /**
      * @Route("/step2", name="step2")
      */
-    public function step2Action(Request $request, SessionInterface $session)
+    public function step2Action(Request $request, OrderManager $orderManager, SessionInterface $session)
     {
         //Step 2 : visitor informations
-        if ($session->has('order')) {
-            $order = $session->get('order');
+        if ($orderManager->hasOrder()) {
+        //if ($session->has('order')) {
+            $order = $orderManager->getOrder();
 
             $form2 = $this->createForm(TicketsFormType::class, $order);
             $form2->handleRequest($request);
@@ -78,11 +65,6 @@ class OrderController extends Controller
             // Step 3 : verifying & pay
             if ($form2->isSubmitted() && $form2->isValid()) {
 
-                //$order = $session->get('order');
-                //$order->addTicket($ticket);
-                //$session->set('order', $order);
-
-                dump($order->getTickets());
 
                 // Calcul du prix
 
@@ -99,6 +81,7 @@ class OrderController extends Controller
             ));
         }
 
+        $this->addFlash('error', 'Veuillez d\'abord remplir ce formulaire');
         return $this->redirectToRoute('step1');
 
     }
