@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-Hello {{ test }}
-
     {% if form is defined %}
-    {{ form(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <input type="submit" value="{{ btnSubmit }}"
+               class="btn btn-primary" />
+        {{ form_end(form) }}
     {% endif %}
 {% endblock %}

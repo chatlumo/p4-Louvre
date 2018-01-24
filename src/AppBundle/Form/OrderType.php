@@ -30,7 +30,7 @@ class OrderType extends AbstractType
             ->add('dateOfVisit', DateType::class, array(
                 'html5' => true,
                 'format' => 'dd/MM/yyyy',
-                'label' => 'Date de visite',
+                'label' => 'Choisir votre date de visite',
                 'years' => range($thisYear,$maxYear)
 
             ))
@@ -40,12 +40,12 @@ class OrderType extends AbstractType
                     'Ticket demi-journée (entrée à partir de 14h)' => false,
                 ),
                 'expanded' => true,
-                'label' => 'Choisir un ticket',
+                'label' => 'Choisir un billet',
 
 
             ))
             ->add('nbTickets', ChoiceType::class, array(
-                'label' => 'Indiquer le nombre de billets souhaités',
+                'label' => 'Choisir le nombre de billets souhaités',
                 'choices' => array(
                     '1' => 1,
                     '2' => 2,
@@ -61,7 +61,7 @@ class OrderType extends AbstractType
 
             ))
             ->add('email', EmailType::class, array(
-                'label' => 'Votre adresse email',
+                'label' => 'Saisir votre adresse email',
 
             ));
 

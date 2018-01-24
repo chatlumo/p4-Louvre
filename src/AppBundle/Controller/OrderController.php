@@ -44,7 +44,7 @@ class OrderController extends Controller
         }
 
         return $this->render('default/index.html.twig', array(
-            'test' => 'truc',
+            'btnSubmit' => "Passer à l'étape 2",
             'form' => $form1->createView(),
         ));
     }
@@ -68,14 +68,14 @@ class OrderController extends Controller
                 $this->get('priceCalculator')->getPrice($order);
 
                 //return $this->redirectToRoute('step3');
+                $this->addFlash('notice', 'Etape 3');
                 return $this->render('default/index.html.twig', array(
-                    'test' => 'step 3',
                 ));
             }
 
             // Step 2 : ticket details
             return $this->render('default/index.html.twig', array(
-                'test' => 'step 2',
+                'btnSubmit' => "Passer à l'étape 3",
                 'form' => $form2->createView(),
             ));
         }

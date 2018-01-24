@@ -31,9 +31,10 @@ class TicketType extends AbstractType
 
             ))
             ->add('birthdate', BirthdayType::class, array(
+                'label' => 'Date de naissance',
                 'html5' => true,
                 'format' => 'dd/MM/yyyy',
-                'label' => 'Date de naissance',
+
             ))
             ->add('country', ChoiceType::class, array(
                 'label' => 'Pays',

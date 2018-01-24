@@ -24,10 +24,10 @@ class TicketsFormType extends AbstractType
                 'entry_type' => TicketType::class,
                 'allow_add'    => true,
                 'allow_delete' => true,
-                'label' => 'Ticket',
                 'entry_options' => array(
-                    'label' => false,
-                )
+                    'label' => 'Titulaire du billet',
+                ),
+                'label' => false,
             ));
     }
 
