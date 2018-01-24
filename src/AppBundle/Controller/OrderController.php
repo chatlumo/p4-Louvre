@@ -65,8 +65,7 @@ class OrderController extends Controller
             // Step 3 : verifying & pay
             if ($form2->isSubmitted() && $form2->isValid()) {
 
-
-                // Calcul du prix
+                $this->get('priceCalculator')->getPrice($order);
 
                 //return $this->redirectToRoute('step3');
                 return $this->render('default/index.html.twig', array(

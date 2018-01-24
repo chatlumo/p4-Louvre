@@ -22,11 +22,17 @@ class OrderType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $now = new \DateTime('now');
+        $thisYear = $now->format('Y');
+        $maxYear = $thisYear + 1;
+
         $builder
             ->add('dateOfVisit', DateType::class, array(
                 'html5' => true,
                 'format' => 'dd/MM/yyyy',
                 'label' => 'Date de visite',
+                'years' => range($thisYear,$maxYear)
+
             ))
             ->add('fullDay', ChoiceType::class, array(
                 'choices' => array(

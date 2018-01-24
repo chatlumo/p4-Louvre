@@ -5,12 +5,16 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator as CustomAssert;
 
 /**
  * Order
  *
  * @ORM\Table(name="order_tickets")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderRepository")
+ *
+ * @CustomAssert\AllowFullDay()
  */
 class Order
 {
@@ -29,6 +33,8 @@ class Order
     /**
      * @var Ticket[]
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="order", cascade={"persist"})
+     *
+     * @Assert\Valid()
      */
     private $tickets;
 
@@ -36,6 +42,8 @@ class Order
      * @var \DateTime
      *
      * @ORM\Column(name="order_date", type="datetime")
+     *
+     * @Assert\DateTime()
      */
     private $orderDate;
 
@@ -43,6 +51,14 @@ class Order
      * @var \DateTime
      *
      * @ORM\Column(name="date_of_visit", type="datetime")
+     *
+     * @Assert\Date()
+     * @Assert\Range(
+     *      min = "today",
+     *      max = "+6 months",
+     *      minMessage = "La date de visite ne peut être dans le passé.",
+     *      maxMessage = "La date de visite doit être inférieure 6 mois.",
+     * )
      */
     private $dateOfVisit;
 
@@ -51,7 +67,7 @@ class Order
      *
      * @ORM\Column(name="fullDay", type="boolean")
      */
-    private $fullDay = self::ORDER_FULL_DAY;
+    private $fullDay;
 
     /**
      * @var float
@@ -71,6 +87,8 @@ class Order
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     *
+     * @Assert\Email(checkMX = true)
      */
     private $email;
 
@@ -85,6 +103,13 @@ class Order
      * @var int
      *
      * @ORM\Column(name="nb_tickets", type="integer")
+     *
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 10,
+     *     minMessage = "Vous devez choisir au moins 1 ticket",
+     *     maxMessage = "Vous ne pouvez pas choisir plus de 10 tickets"
+     * )
      */
     private $nbTickets;
 
