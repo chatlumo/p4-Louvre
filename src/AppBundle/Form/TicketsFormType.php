@@ -28,9 +28,6 @@ class TicketsFormType extends AbstractType
                 'entry_options' => array(
                     'label' => false,
                 )
-            ))
-            ->add('submit', SubmitType::class, array(
-                'attr' => array('class' => 'btn btn-primary')
             ));
     }
 
@@ -39,6 +36,7 @@ class TicketsFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Order',
+            'validation_groups' => array('step2'),
         ]);
     }
 

@@ -63,10 +63,7 @@ class OrderType extends AbstractType
             ->add('email', EmailType::class, array(
                 'label' => 'Votre adresse email',
 
-            ))
-            ->add('submit', SubmitType::class, array(
-                'attr' => array('class' => 'btn btn-primary')
-            ));;
+            ));
 
 
     }
@@ -74,7 +71,8 @@ class OrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Order'
+            'data_class' => 'AppBundle\Entity\Order',
+            'validation_groups' => array('step1'),
         ));
     }
 

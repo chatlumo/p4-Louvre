@@ -14,7 +14,7 @@ use AppBundle\Validator as CustomAssert;
  * @ORM\Table(name="order_tickets")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderRepository")
  *
- * @CustomAssert\AllowFullDay()
+ * @CustomAssert\AllowFullDay(groups={"step1"})
  */
 class Order
 {
@@ -52,12 +52,13 @@ class Order
      *
      * @ORM\Column(name="date_of_visit", type="datetime")
      *
-     * @Assert\Date()
+     * @Assert\Date(groups={"step1"})
      * @Assert\Range(
-     *      min = "today",
-     *      max = "+6 months",
-     *      minMessage = "La date de visite ne peut être dans le passé.",
-     *      maxMessage = "La date de visite doit être inférieure 6 mois.",
+     *     min = "today",
+     *     max = "+6 months",
+     *     minMessage = "La date de visite ne peut être dans le passé.",
+     *     maxMessage = "La date de visite doit être inférieure 6 mois.",
+     *     groups={"step1"}
      * )
      */
     private $dateOfVisit;
@@ -88,7 +89,7 @@ class Order
      *
      * @ORM\Column(name="email", type="string", length=255)
      *
-     * @Assert\Email(checkMX = true)
+     * @Assert\Email(checkMX = true, groups={"step1"})
      */
     private $email;
 
@@ -108,7 +109,8 @@ class Order
      *     min = 1,
      *     max = 10,
      *     minMessage = "Vous devez choisir au moins 1 ticket",
-     *     maxMessage = "Vous ne pouvez pas choisir plus de 10 tickets"
+     *     maxMessage = "Vous ne pouvez pas choisir plus de 10 tickets",
+     *     groups={"step1"}
      * )
      */
     private $nbTickets;

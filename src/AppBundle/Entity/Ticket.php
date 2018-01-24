@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ticket
@@ -34,6 +35,7 @@ class Ticket
      * @var bool
      *
      * @ORM\Column(name="reducedPrice", type="boolean")
+     *
      */
     private $reducedPrice;
 
@@ -48,6 +50,16 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255)
+     *
+     * @Assert\NotBlank(
+     *     message="Merci d'indiquer votre nom de famille.",
+     *     groups={"step2"}
+     * )
+     * @Assert\Length(
+     *     min=2,
+     *     minMessage="Votre nom doit comporter au moins {{ limit }} caractères.",
+     *     groups={"step2"}
+     * )
      */
     private $lastname;
 
@@ -55,6 +67,16 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
+     *
+     * @Assert\NotBlank(
+     *     message="Merci d'indiquer votre prénom.",
+     *     groups={"step2"}
+     * )
+     * @Assert\Length(
+     *     min=2,
+     *     minMessage="Votre prénom doit comporter au moins {{ limit }} caractères.",
+     *     groups={"step2"}
+     * )
      */
     private $firstname;
 
@@ -62,6 +84,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     *
+     * @Assert\NotBlank(groups={"step2"})
+     * @Assert\Length(
+     *     min=2,
+     *     minMessage="Le nom du pays doit comporter au moins {{ limit }} caractères.",
+     *     groups={"step2"}
+     * )
      */
     private $country;
 
@@ -69,6 +98,15 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="date")
+     *
+     * @Assert\Date(groups={"step2"})
+     * @Assert\Range(
+     *     min = "-100 years",
+     *     max = "today",
+     *     minMessage = "La date de naissance doit être valide.",
+     *     maxMessage = "La date de naissance doit être valide.",
+     *     groups={"step2"}
+     * )
      */
     private $birthdate;
 
