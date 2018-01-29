@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+Vous avez choisi {{ order.nbTickets }} billet(s) {% if not order.fullDay %}demi-{% endif %}journée pour une visite le {{ order.dateOfVisit|date("d/m/Y") }} :<br>
+{% for ticket in order.tickets %}
+    <div class="ticket">
+        Ticket {{ loop.index }}<br>
+        {{ ticket.lastname|upper }} {{ ticket.firstname }}<br>
+        Date de naissance : {{ ticket.birthdate|date("d/m/Y") }}<br>
+        Pays : {{ ticket.country }}<br>
+        Tarif réduit : {% if ticket.reducedPrice %}OUI{% else %}NON{% endif %}<br>
+        Prix du billet : {{ ticket.price }} €
+    </div>
+{% endfor %}
+Montant total : {{ order.totalAmount }} €
+
+
+{% endblock %}

@@ -67,16 +67,50 @@ class OrderController extends Controller
 
             $this->get('priceCalculator')->computePrice($order);
 
-            //return $this->redirectToRoute('step3');
+            return $this->redirectToRoute('step3');
+            /*
             $this->addFlash('notice', 'Etape 3');
             return $this->render('default/index.html.twig', array(
             ));
+            */
         }
 
         // Step 2 : ticket details
         return $this->render('default/index.html.twig', array(
             'btnSubmit' => "Passer à l'étape 3",
             'form' => $form2->createView(),
+        ));
+
+    }
+
+    /**
+     * @Route("/step3", name="step3")
+     */
+    public function step3Action(Request $request, OrderManager $orderManager, SessionInterface $session)
+    {
+        //Step 2 : visitor informations
+        $order = $orderManager->getOrder();
+
+        /*
+        $form2 = $this->createForm(TicketsFormType::class, $order);
+        $form2->handleRequest($request);
+
+        // Step 3 : verifying & pay
+        if ($form2->isSubmitted() && $form2->isValid()) {
+
+            $this->get('priceCalculator')->computePrice($order);
+
+            //return $this->redirectToRoute('step3');
+            $this->addFlash('notice', 'Etape 3');
+            return $this->render('default/index.html.twig', array(
+            ));
+        }
+        */
+
+        // Step 3 : Check before to pay
+        return $this->render('default/step3.html.twig', array(
+            'order' => $order,
+            //'form' => $form2->createView(),
         ));
 
     }
