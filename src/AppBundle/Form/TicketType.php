@@ -11,7 +11,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,12 +36,13 @@ class TicketType extends AbstractType
                 'format' => 'dd/MM/yyyy',
 
             ))
-            ->add('country', ChoiceType::class, array(
+            ->add('country', CountryType::class, array(
                 'label' => 'Pays',
-                'choices' => array(
+                'preferred_choices' => array('FR'),
+                /*'choices' => array(
                     'France' => 'FR',
                     'Angleterre' => 'UK',
-                )
+                )*/
             ))
             ->add('reducedPrice', CheckboxType::class, array(
                 'label' => 'Je bénéficie du tarif réduit à  10 € (étudiant, employé du musée, employé d\'un service du Ministrère de la Culture, militaire)',
