@@ -31,7 +31,7 @@ class PriceCalculator
 
     private $visitDuration;
 
-    public function getPrice(Order $order) {
+    public function computePrice(Order $order) {
 
         if ($order->getFullDay()) {
             $this->visitDuration = self::FULL_DAY;
@@ -47,21 +47,19 @@ class PriceCalculator
             $price = 0;
             $age = $ticket->getBirthdate()->diff($dateOfVisit)->format('%y');
 
-            switch ($age) {
-                case ($age < self::BABY_AGE):
-                    $price = self::BABY_PRICE;
-                    break;
-                case ($age < self::CHILD_AGE):
-                    $price = self::CHILD_PRICE;
-                    break;
-                case ($age > self::SENIOR_AGE):
-                    $price = self::SENIOR_PRICE;
-                    break;
-                default:
-                    $price = self::NORMAL_PRICE;
+
+
+            if ($age < self::BABY_AGE) {
+                $price = self::BABY_PRICE;
+            } elseif ($age < self::CHILD_AGE) {
+                $price = self::CHILD_PRICE;
+            } elseif ($age > self::SENIOR_AGE) {
+                $price = self::SENIOR_PRICE;
+            } else {
+                $price = self::NORMAL_PRICE;
             }
 
-            if ($ticket->getReducedPrice()) {
+            if ($ticket->getReducedPrice() && $age > self::CHILD_AGE) {
                 $price = self::REDUCED_PRICE;
             }
 
@@ -71,6 +69,8 @@ class PriceCalculator
 
             $totalPrice += $price;
         }
+
+        $order->setTotalAmount($totalPrice);
 
         return $order;
 
