@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Exception\OrderException;
 use AppBundle\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,6 +33,7 @@ class OrderController extends Controller
         //Step 1 : order informations
         $order = $orderManager->initOrder();
 
+
         $form1 = $this->createForm(OrderType::class, $order);
         $form1->handleRequest($request);
 
@@ -55,33 +57,27 @@ class OrderController extends Controller
     public function step2Action(Request $request, OrderManager $orderManager, SessionInterface $session)
     {
         //Step 2 : visitor informations
-        if ($orderManager->hasOrder()) {
-        //if ($session->has('order')) {
-            $order = $orderManager->getOrder();
+        $order = $orderManager->getOrder();
 
-            $form2 = $this->createForm(TicketsFormType::class, $order);
-            $form2->handleRequest($request);
+        $form2 = $this->createForm(TicketsFormType::class, $order);
+        $form2->handleRequest($request);
 
-            // Step 3 : verifying & pay
-            if ($form2->isSubmitted() && $form2->isValid()) {
+        // Step 3 : verifying & pay
+        if ($form2->isSubmitted() && $form2->isValid()) {
 
-                $this->get('priceCalculator')->getPrice($order);
+            $this->get('priceCalculator')->computePrice($order);
 
-                //return $this->redirectToRoute('step3');
-                $this->addFlash('notice', 'Etape 3');
-                return $this->render('default/index.html.twig', array(
-                ));
-            }
-
-            // Step 2 : ticket details
+            //return $this->redirectToRoute('step3');
+            $this->addFlash('notice', 'Etape 3');
             return $this->render('default/index.html.twig', array(
-                'btnSubmit' => "Passer à l'étape 3",
-                'form' => $form2->createView(),
             ));
         }
 
-        $this->addFlash('error', 'Veuillez d\'abord remplir ce formulaire');
-        return $this->redirectToRoute('step1');
+        // Step 2 : ticket details
+        return $this->render('default/index.html.twig', array(
+            'btnSubmit' => "Passer à l'étape 3",
+            'form' => $form2->createView(),
+        ));
 
     }
 }
