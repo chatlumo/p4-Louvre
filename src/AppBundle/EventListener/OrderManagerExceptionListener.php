@@ -10,7 +10,7 @@ namespace AppBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use AppBundle\Exception\OrderManagerException;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -20,7 +20,7 @@ class OrderManagerExceptionListener
     private $router;
     private $session;
 
-    public function __construct(Router $router, SessionInterface $session)
+    public function __construct(RouterInterface $router, SessionInterface $session)
     {
         $this->router = $router;
         $this->session = $session;
