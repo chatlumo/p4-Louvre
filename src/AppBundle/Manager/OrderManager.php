@@ -11,12 +11,12 @@ namespace AppBundle\Manager;
 use AppBundle\Entity\Order;
 use AppBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use AppBundle\Exception\OrderManagerException;
 
 
 class OrderManager
 {
     private $session;
-    private $order;
 
     public function __construct(SessionInterface $session) {
         $this->session = $session;
@@ -24,32 +24,27 @@ class OrderManager
     }
 
     public function initOrder() {
-        if ( is_null($this->order) ) {
-            $this->order = new Order();
+        $order = $this->getSessionOrder();
+
+        if ( is_null($order) ) {
+            $order = new Order();
         }
 
-        //$this->getSessionOrder();
-
-        return $this->getOrder();
-
+        return $order;
     }
 
     public function getOrder() {
-        $this->getSessionOrder();
+        $order = $this->getSessionOrder();
 
-        return $this->order;
+        if ( is_null($order) ) {
+            throw new OrderManagerException('app.fill.form1.first');
+        }
 
+        return $order;
     }
 
     public function setOrder(Order $order) {
-        $this->order = $order;
-
-        return $this;
-    }
-
-    public function hasOrder() {
-        return !is_null($this->getOrder());
-
+        $this->setSessionOrder($order);
     }
 
     public function prepareOrder(Order $order) {
@@ -66,27 +61,20 @@ class OrderManager
         }
 
         $this->setSessionOrder($order);
-        $this->order = $order;
-
-        return;
-
     }
 
-    public function getSessionOrder() {
+    private function getSessionOrder() {
         if ($this->session->has('order')) {
             if ($this->session->get('order') instanceof Order) {
-                $this->order = $this->session->get('order');
+                return $this->session->get('order');
             }
         }
 
-        return $this;
-
+        return null;
     }
 
-    public function setSessionOrder(Order $order) {
+    private function setSessionOrder(Order $order) {
         $this->session->set('order', $order);
-
-        return $this;
 
     }
 
