@@ -36,3 +36,7 @@ services:
     PriceCalculator:
         public: true
         class: 'AppBundle\Service\PriceCalculator'
+
+    AppBundle\EventListener\OrderManagerExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
