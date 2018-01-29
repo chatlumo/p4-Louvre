@@ -10,10 +10,9 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -60,8 +59,12 @@ class OrderType extends AbstractType
                 )
 
             ))
-            ->add('email', EmailType::class, array(
-                'label' => 'Saisir votre adresse email',
+            ->add('email', RepeatedType::class, array(
+                'type' => EmailType::class,
+                'invalid_message' => 'Adresses email différentes !',
+                'required' => true,
+                'first_options'  => array('label' => 'Saisir votre adresse email'),
+                'second_options' => array('label' => 'Saisir à nouveau votre adresse email'),
 
             ));
 
