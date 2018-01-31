@@ -81,6 +81,10 @@ class Order
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank(
+     *     message="La référence ne peut être vide !"
+     * )
      */
     private $reference;
 
@@ -97,6 +101,10 @@ class Order
      * @var string
      *
      * @ORM\Column(name="trans_id", type="string", length=255)
+     *
+     * @Assert\NotBlank(
+     *     message="Le numéro de transaction ne peut être vide !"
+     * )
      */
     private $transId;
 
@@ -313,6 +321,7 @@ class Order
     public function addTicket(Ticket $ticket)
     {
         $this->tickets[] = $ticket;
+        $ticket->setOrder($this);
 
         return $this;
     }

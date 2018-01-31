@@ -15,5 +15,15 @@ Vous avez choisi {{ order.nbTickets }} billet(s) {% if not order.fullDay %}demi-
 {% endfor %}
 Montant total : {{ order.totalAmount }} €
 
-
+    <form action="{{ path('checkout') }}" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ stripe_public_key }}"
+                data-amount="{{ order.totalAmount * 100 }}"
+                data-name="Paiement sécurisé"
+                data-description="Billeterie Musée du Louvre"
+                data-locale="auto"
+                data-currency="eur">
+        </script>
+    </form>
 {% endblock %}

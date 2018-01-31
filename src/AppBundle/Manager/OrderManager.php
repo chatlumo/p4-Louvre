@@ -10,19 +10,33 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Order;
 use AppBundle\Entity\Ticket;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use AppBundle\Exception\OrderManagerException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 class OrderManager
 {
     private $session;
+    private $em;
+    private $validator;
 
-    public function __construct(SessionInterface $session) {
+    /**
+     * OrderManager constructor.
+     * @param SessionInterface $session
+     * @param EntityManagerInterface $em
+     * @param ValidatorInterface $validator
+     */
+    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator) {
         $this->session = $session;
-
+        $this->em = $em;
+        $this->validator = $validator;
     }
 
+    /**
+     * @return Order
+     */
     public function initOrder() {
         $order = $this->getSessionOrder();
 
@@ -33,6 +47,9 @@ class OrderManager
         return $order;
     }
 
+    /**
+     * @return Order|null
+     */
     public function getOrder() {
         $order = $this->getSessionOrder();
 
@@ -43,10 +60,16 @@ class OrderManager
         return $order;
     }
 
+    /**
+     * @param Order $order
+     */
     public function setOrder(Order $order) {
         $this->setSessionOrder($order);
     }
 
+    /**
+     * @param Order $order
+     */
     public function prepareOrder(Order $order) {
         //Creating empty tickets while number of tickets is less than number of tickets chosen
         while (count($order->getTickets()) < $order->getNbTickets()) {
@@ -63,6 +86,43 @@ class OrderManager
         $this->setSessionOrder($order);
     }
 
+    /**
+     * @param Order $order
+     * @param $transId
+     * @return \Symfony\Component\Validator\ConstraintViolationListInterface
+     */
+    public function completeOrder(Order $order, $transId) {
+        //Set transId
+        $order->setTransId($transId);
+        //Set orderDate
+        $order->setOrderDate(new \DateTime('now'));
+        //Set reference
+        $order->setReference(strtoupper(uniqid()));
+
+
+        $errors = $this->validator->validate($order);
+
+        if (count($errors) > 0) {
+            $errMsg = '';
+            foreach ($errors as $error) {
+                $errMsg .= $error->getMessage().' ';
+            }
+
+            throw new OrderManagerException($errMsg);
+        }
+
+        $this->em->persist($order);
+        $this->em->flush();
+
+
+        $this->setSessionOrder($order);
+
+        return $errors;
+    }
+
+    /**
+     * @return mixed|null
+     */
     private function getSessionOrder() {
         if ($this->session->has('order')) {
             if ($this->session->get('order') instanceof Order) {
