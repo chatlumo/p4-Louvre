@@ -114,6 +114,8 @@ class OrderManager
         $this->em->persist($order);
         $this->em->flush();
 
+        // Send email to customer
+
 
         $this->setSessionOrder($order);
 

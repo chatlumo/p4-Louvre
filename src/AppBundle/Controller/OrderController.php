@@ -153,39 +153,12 @@ class OrderController extends Controller
     public function successAction(Request $request, OrderManager $orderManager, SessionInterface $session)
     {
         $order = $orderManager->getOrder();
-        dump($order);
-        /*
-        $validator = $this->get('validator');
-        $errors = $validator->validate($order);
-        dump(count($errors));
-        */
+        $reference = $order->getReference();
+        $session->clear();
 
-        /*
-
-        \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
-
-        // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
-
-        // Create a charge: this will charge the user's card
-        try {
-            $charge = \Stripe\Charge::create(array(
-                "amount" => $order->getTotalAmount() * 100, // Amount in cents
-                "currency" => "eur",
-                "source" => $token,
-                "description" => "Billetterie Musée du Louvre"
-            ));
-            //$charge->id;
-            return $this->redirectToRoute("success");
-        } catch(\Stripe\Error\Card $e) {
-
-            $this->addFlash("error","Le paiement n\'a pas fonctionné, veuillez réessayer.");
-            return $this->redirectToRoute("step3");
-            // The card has been declined
-        }
-        */
         return $this->render('default/success.html.twig', array(
             'order' => $order,
+            'reference' => $reference
         ));
     }
 }
