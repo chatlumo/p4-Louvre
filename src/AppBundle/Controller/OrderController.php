@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Stripe\Charge;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,10 +24,9 @@ class OrderController extends Controller
      * @Route("/", name="step1")
      * @param Request $request
      * @param OrderManager $orderManager
-     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function step1Action(Request $request, OrderManager $orderManager, SessionInterface $session)
+    public function step1Action(Request $request, OrderManager $orderManager)
     {
         //Step 1 : order informations
         $order = $orderManager->initOrder();
@@ -52,10 +53,9 @@ class OrderController extends Controller
      * @Route("/step2", name="step2")
      * @param Request $request
      * @param OrderManager $orderManager
-     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function step2Action(Request $request, OrderManager $orderManager, SessionInterface $session)
+    public function step2Action(Request $request, OrderManager $orderManager)
     {
         //Step 2 : visitor informations
         $order = $orderManager->getOrder();
@@ -81,19 +81,16 @@ class OrderController extends Controller
 
     /**
      * @Route("/step3", name="step3")
-     * @param Request $request
      * @param OrderManager $orderManager
-     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function step3Action(Request $request, OrderManager $orderManager, SessionInterface $session)
+    public function step3Action(OrderManager $orderManager)
     {
         // Step 3 : Check before to pay
         $order = $orderManager->getOrder();
 
         return $this->render('default/step3.html.twig', array(
             'order' => $order,
-            'stripe_public_key' => $this->getParameter('stripe_public_key'),
         ));
 
     }
@@ -106,30 +103,32 @@ class OrderController extends Controller
      * )
      * @param Request $request
      * @param OrderManager $orderManager
-     * @param SessionInterface $session
      * @return mixed
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    public function checkoutAction(Request $request, OrderManager $orderManager, SessionInterface $session)
+    public function checkoutAction(Request $request, OrderManager $orderManager)
     {
         $order = $orderManager->getOrder();
 
-        \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
+        Stripe::setApiKey($this->getParameter('stripe_secret_key'));
 
         // Get the credit card details submitted by the form
         $token = $request->request->get('stripeToken');
 
         // Create a charge: this will charge the user's card
         try {
-            $charge = \Stripe\Charge::create(array(
+            $charge = Charge::create(array(
                 "amount" => $order->getTotalAmount() * 100, // Amount in cents
                 "currency" => "eur",
                 "source" => $token,
                 "description" => "Billetterie Musée du Louvre"
             ));
 
-        } catch(\Stripe\Error\Card $e) {
+        } catch(\Exception $e) {
 
-            $this->addFlash("error","Le paiement n\'a pas fonctionné, veuillez réessayer.");
+            $this->addFlash("error","Le paiement n'a pas fonctionné, veuillez réessayer.");
             return $this->redirectToRoute("step3");
             // The card has been declined
         }
@@ -145,12 +144,11 @@ class OrderController extends Controller
      *     "/success",
      *     name="success"
      * )
-     * @param Request $request
      * @param OrderManager $orderManager
      * @param SessionInterface $session
      * @return mixed
      */
-    public function successAction(Request $request, OrderManager $orderManager, SessionInterface $session)
+    public function successAction(OrderManager $orderManager, SessionInterface $session)
     {
         $order = $orderManager->getOrder();
         $reference = $order->getReference();
