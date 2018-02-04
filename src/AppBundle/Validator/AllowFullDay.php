@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class AllowFullDay extends Constraint
 {
-    public $message = "Le billet journée n'est plus disponible pour le jour même";
+    public $message = "Le billet journée n'est plus disponible pour le jour même, veuillez choisir le billet demi-journée.";
 
     public function getTargets()
     {

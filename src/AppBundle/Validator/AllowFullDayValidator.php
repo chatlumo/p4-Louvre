@@ -14,6 +14,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 class AllowFullDayValidator extends ConstraintValidator
 {
 
+    const LIMIT_HOUR = 14;
+
     public function validate($protocol, Constraint $constraint)
     {
         $now = new \DateTime();
@@ -25,7 +27,7 @@ class AllowFullDayValidator extends ConstraintValidator
         $sameDay = ($dateOfVisit->diff($today)->format('%a')) == 0 ? true : false;
 
 
-        if (($protocol->getFullDay() === true) && $sameDay && $nowHour > 14) {
+        if (($protocol->getFullDay() === true) && $sameDay && $nowHour > self::LIMIT_HOUR) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }
