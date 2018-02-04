@@ -2,7 +2,8 @@
 
 {% block body %}
 
-Vous avez choisi {{ order.nbTickets }} billet(s) {% if not order.fullDay %}demi-{% endif %}journée pour une visite le {{ order.dateOfVisit|date("d/m/Y") }} :<br>
+Vous avez choisi {{ order.nbTickets }} billet(s) {% if not order.fullDay %}demi-{% endif %}journée pour une visite le {{ order.dateOfVisit|date("d/m/Y") }} :
+<br>
 {% for ticket in order.tickets %}
     <div class="ticket">
         Ticket {{ loop.index }}<br>
@@ -15,15 +16,17 @@ Vous avez choisi {{ order.nbTickets }} billet(s) {% if not order.fullDay %}demi-
 {% endfor %}
 Montant total : {{ order.totalAmount }} €
 
-    <form action="{{ path('checkout') }}" method="POST">
-        <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="{{ stripe_public_key }}"
-                data-amount="{{ order.totalAmount * 100 }}"
-                data-name="Paiement sécurisé"
-                data-description="Billeterie Musée du Louvre"
-                data-locale="auto"
-                data-currency="eur">
-        </script>
-    </form>
+<form action="{{ path('checkout') }}" method="POST">
+    <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ stripe_public_key }}"
+            data-amount="{{ order.totalAmount * 100 }}"
+            data-name="Paiement sécurisé"
+            data-description="Billeterie Musée du Louvre"
+            data-email="{{ order.email }}"
+            data-label="{{ "Payer par carte"|trans }}"
+            data-locale="auto"
+            data-currency="eur">
+    </script>
+</form>
 {% endblock %}
