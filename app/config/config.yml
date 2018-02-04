@@ -7,10 +7,12 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    from_email: '%app.from_email%'
+    stripe_secret_key: '%app.stripe_secret_key%'
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -39,6 +41,8 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'Form/bootstrap_4_layout.html.twig'
+    globals:
+        stripe_public_key: '%app.stripe_public_key%'
 
 # Doctrine Configuration
 doctrine:
@@ -69,3 +73,4 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+    port: '%mailer_port%'

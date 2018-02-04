@@ -37,7 +37,7 @@ class Ticket
      * @ORM\Column(name="reducedPrice", type="boolean")
      *
      */
-    private $reducedPrice;
+    private $reducedPrice = false;
 
     /**
      * @var float

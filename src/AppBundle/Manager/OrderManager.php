@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use AppBundle\Exception\OrderManagerException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use AppBundle\Service\EmailSender;
 
 
 class OrderManager
@@ -21,17 +22,21 @@ class OrderManager
     private $session;
     private $em;
     private $validator;
+    private $emailSender;
 
     /**
      * OrderManager constructor.
      * @param SessionInterface $session
      * @param EntityManagerInterface $em
      * @param ValidatorInterface $validator
+     * @param \Twig_Environment $templating
+     * @param \Swift_Mailer $mailer
      */
-    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator) {
+    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator, EmailSender $emailSender) {
         $this->session = $session;
         $this->em = $em;
         $this->validator = $validator;
+        $this->emailSender = $emailSender;
     }
 
     /**
@@ -40,7 +45,7 @@ class OrderManager
     public function initOrder() {
         $order = $this->getSessionOrder();
 
-        if ( is_null($order) ) {
+        if ( !$order ) {
             $order = new Order();
         }
 
@@ -53,7 +58,7 @@ class OrderManager
     public function getOrder() {
         $order = $this->getSessionOrder();
 
-        if ( is_null($order) ) {
+        if ( !$order ) {
             throw new OrderManagerException('app.fill.form1.first');
         }
 
@@ -89,7 +94,10 @@ class OrderManager
     /**
      * @param Order $order
      * @param $transId
-     * @return \Symfony\Component\Validator\ConstraintViolationListInterface
+     * @return void
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function completeOrder(Order $order, $transId) {
         //Set transId
@@ -114,12 +122,26 @@ class OrderManager
         $this->em->persist($order);
         $this->em->flush();
 
+        /*
         // Send email to customer
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom($this->container->getParameter('from_email'))
+            ->setTo($order->getEmail())
+            ->setBody(
+                $this->templating->render(
+                    'Email/success.html.twig',
+                    array('order' => $order)
+                ),
+                'text/html'
+            )
+        ;
+
+        $this->mailer->send($message);
+        */
+        $this->emailSender->sendEmail($order->getEmail(), 'Hello Email', $order, 'Email/success.html.twig');
 
 
         $this->setSessionOrder($order);
-
-        return $errors;
     }
 
     /**
@@ -135,6 +157,9 @@ class OrderManager
         return null;
     }
 
+    /**
+     * @param Order $order
+     */
     private function setSessionOrder(Order $order) {
         $this->session->set('order', $order);
 

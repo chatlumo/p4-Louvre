@@ -14,10 +14,14 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
+    mailer_port: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
     #Stripe keys
-    stripe_public_key: pk_xxx
-    stripe_secret_key: sk_xxx
+    app.stripe_public_key: pk_xxx
+    app.stripe_secret_key: sk_xxx
+
+    # Email FROM field
+    app.from_email: email@domain.tld
