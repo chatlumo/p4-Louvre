@@ -21,8 +21,16 @@ class EmailSender
         $this->from_email = $from_email;
     }
 
+    /**
+     * @param $to
+     * @param $subject
+     * @param $object
+     * @param $template
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function sendEmail($to, $subject, $object, $template) {
-        // Send email to customer
         $message = (new \Swift_Message($subject))
             ->setFrom($this->from_email)
             ->setTo($to)

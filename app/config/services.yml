@@ -41,8 +41,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
-    EmailSender:
-        public: true
-        class: 'AppBundle\Service\EmailSender'
+    AppBundle\Service\EmailSender:
         arguments:
             $from_email: '%from_email%'

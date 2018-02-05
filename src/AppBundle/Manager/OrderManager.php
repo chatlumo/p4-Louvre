@@ -122,23 +122,9 @@ class OrderManager
         $this->em->persist($order);
         $this->em->flush();
 
-        /*
-        // Send email to customer
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom($this->container->getParameter('from_email'))
-            ->setTo($order->getEmail())
-            ->setBody(
-                $this->templating->render(
-                    'Email/success.html.twig',
-                    array('order' => $order)
-                ),
-                'text/html'
-            )
-        ;
 
-        $this->mailer->send($message);
-        */
-        $this->emailSender->sendEmail($order->getEmail(), 'Hello Email', $order, 'Email/success.html.twig');
+        //send email to customer
+        $this->emailSender->sendEmail( $order->getEmail(), 'Hello Email', $order, 'Email/success.html.twig');
 
 
         $this->setSessionOrder($order);
