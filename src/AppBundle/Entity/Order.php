@@ -14,12 +14,14 @@ use AppBundle\Validator as CustomAssert;
  * @ORM\Table(name="order_tickets")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrderRepository")
  *
- * @CustomAssert\AllowFullDay(groups={"step1"})
+ * @CustomAssert\AllowFullDay(groups={"step1"}) *
+ * @CustomAssert\NotMaxTicketsSold(groups={"step1"})
  */
 class Order
 {
     const ORDER_FULL_DAY = true;
     const ORDER_HALF_DAY = false;
+    const MAX_TICKETS_FOR_1_DATE = 2;
 
     /**
      * @var int
@@ -55,11 +57,13 @@ class Order
      * @Assert\Date(groups={"step1"})
      * @Assert\Range(
      *     min = "today",
-     *     max = "+6 months",
-     *     minMessage = "La date de visite ne peut être dans le passé.",
-     *     maxMessage = "La date de visite doit être inférieure 6 mois.",
+     *     max = "+9 months",
+     *     minMessage = "order.dateOfVisit.past",
+     *     maxMessage = "order.dateOfVisit.max",
      *     groups={"step1"}
      * )
+     * @CustomAssert\NotClosingDay(groups={"step1"})
+     * @CustomAssert\NotHoliday(groups={"step1"})
      */
     private $dateOfVisit;
 
@@ -83,7 +87,7 @@ class Order
      * @ORM\Column(name="reference", type="string", length=255, unique=true)
      *
      * @Assert\NotBlank(
-     *     message="La référence ne peut être vide !"
+     *     message="order.reference.blank"
      * )
      */
     private $reference;
@@ -103,7 +107,7 @@ class Order
      * @ORM\Column(name="trans_id", type="string", length=255)
      *
      * @Assert\NotBlank(
-     *     message="Le numéro de transaction ne peut être vide !"
+     *     message="order.transaction.empty"
      * )
      */
     private $transId;
@@ -116,8 +120,8 @@ class Order
      * @Assert\Range(
      *     min = 1,
      *     max = 10,
-     *     minMessage = "Vous devez choisir au moins 1 ticket",
-     *     maxMessage = "Vous ne pouvez pas choisir plus de 10 tickets",
+     *     minMessage = "order.nbtickets.min",
+     *     maxMessage = "order.nbtickets.max",
      *     groups={"step1"}
      * )
      */

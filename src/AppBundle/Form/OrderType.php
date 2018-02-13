@@ -29,22 +29,22 @@ class OrderType extends AbstractType
             ->add('dateOfVisit', DateType::class, array(
                 'html5' => true,
                 'format' => 'dd/MM/yyyy',
-                'label' => 'Choisir votre date de visite',
+                'label' => 'app.step1.choose.dateOfVisit',
                 'years' => range($thisYear,$maxYear)
 
             ))
             ->add('fullDay', ChoiceType::class, array(
                 'choices' => array(
-                    'Ticket journée' => true,
-                    'Ticket demi-journée (entrée à partir de 14h)' => false,
+                    'app.step1.ticket.fullday' => true,
+                    'app.step1.ticket.halfday' => false,
                 ),
                 'expanded' => true,
-                'label' => 'Choisir un billet',
+                'label' => 'app.step1.choose.ticket',
 
 
             ))
             ->add('nbTickets', ChoiceType::class, array(
-                'label' => 'Choisir le nombre de billets souhaités',
+                'label' => 'app.step1.nbtickets',
                 'choices' => array(
                     '1' => 1,
                     '2' => 2,
@@ -61,10 +61,10 @@ class OrderType extends AbstractType
             ))
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
-                'invalid_message' => 'Adresses email différentes !',
+                'invalid_message' => 'app.step1.email.error',
                 'required' => true,
-                'first_options'  => array('label' => 'Saisir votre adresse email'),
-                'second_options' => array('label' => 'Saisir à nouveau votre adresse email'),
+                'first_options'  => array('label' => 'app.step1.email.label1'),
+                'second_options' => array('label' => 'app.step1.email.label2'),
 
             ));
 

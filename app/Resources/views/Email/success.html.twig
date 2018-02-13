@@ -1,4 +1,5 @@
-Votre commande est bien enregistrée.<br>
-Vous allez recevoir un email avec votre code de réservation.
+{{ 'app.success.order.saved'|trans }}<br>
+{{ 'app.success.email.sent'|trans }}
 
-<p>Merci de noter ou d'imprimer votre code de réservation en cas de non réception de cet email : <strong>{{ object.reference }}</strong></p>
+<p>{{ 'app.success.reference.to.show'|trans }} : <strong>{{ order.reference }}</strong></p>
+<p><img src="{{ absolute_url(asset('images/logo_email.jpg')) }}" alt="Louvre"></p>

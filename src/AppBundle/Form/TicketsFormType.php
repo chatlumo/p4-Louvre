@@ -25,7 +25,7 @@ class TicketsFormType extends AbstractType
                 'allow_add'    => true,
                 'allow_delete' => true,
                 'entry_options' => array(
-                    'label' => 'Titulaire du billet',
+                    'label' => 'app.step2.owner',
                 ),
                 'label' => false,
             ));

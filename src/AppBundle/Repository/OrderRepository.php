@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Order;
+
 /**
  * OrderRepository
  *
@@ -10,4 +12,24 @@ namespace AppBundle\Repository;
  */
 class OrderRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $date
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countAvailableTickets($date){
+
+        $tickets_limit = Order::MAX_TICKETS_FOR_1_DATE;
+        $tickets_sold = $this
+                ->createQueryBuilder('o')
+                ->andWhere('o.dateOfVisit = :dateOfVisit')
+                ->setParameter('dateOfVisit', $date)
+                ->select('SUM(o.nbTickets) as tickets')
+                ->getQuery()
+                ->getSingleScalarResult();
+
+        return $tickets_limit - $tickets_sold;
+
+    }
 }

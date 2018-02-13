@@ -2,29 +2,36 @@
 
 {% block body %}
 
-Vous avez choisi {{ order.nbTickets }} billet(s) {% if not order.fullDay %}demi-{% endif %}journée pour une visite le {{ order.dateOfVisit|date("d/m/Y") }} :
+
+    {% transchoice order.nbTickets %}
+        app.resume.order.some
+    {% endtranschoice %}
+
+
+    {% if not order.fullDay %}{{ 'app.half.day'|trans }}{% else %}{{ 'app.day'|trans }}{% endif %}
+ {{ 'app.resume.order.on'|trans }} {{ order.dateOfVisit|date("d/m/Y") }} :
 <br>
 {% for ticket in order.tickets %}
     <div class="ticket">
         Ticket {{ loop.index }}<br>
         {{ ticket.lastname|upper }} {{ ticket.firstname }}<br>
-        Date de naissance : {{ ticket.birthdate|date("d/m/Y") }}<br>
-        Pays : {{ ticket.country }}<br>
-        Tarif réduit : {% if ticket.reducedPrice %}OUI{% else %}NON{% endif %}<br>
-        Prix du billet : {{ ticket.price }} €
+        {{ 'app.birthdate'|trans }} : {{ ticket.birthdate|date("d/m/Y") }}<br>
+        {{ 'app.country'|trans }} : {{ ticket.country }}<br>
+        {{ 'app.reduced_price'|trans }} : {% if ticket.reducedPrice %}{{ 'app.yes'|trans }}{% else %}{{ 'app.no'|trans }}{% endif %}<br>
+        {{ 'app.ticket_price'|trans }} : {{ ticket.price }} €
     </div>
 {% endfor %}
-Montant total : {{ order.totalAmount }} €
+{{ 'app.step3.total_amount'|trans }} : {{ order.totalAmount }} €
 
 <form action="{{ path('checkout') }}" method="POST">
     <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ stripe_public_key }}"
             data-amount="{{ order.totalAmount * 100 }}"
-            data-name="Paiement sécurisé"
-            data-description="Billeterie Musée du Louvre"
+            data-name="{{ 'app.step3.stripe.secured.payment'|trans }}"
+            data-description="{{ 'app.step3.stripe.title'|trans }}"
             data-email="{{ order.email }}"
-            data-label="{{ "Payer par carte"|trans }}"
+            data-label="{{ "pay.by.card"|trans }}"
             data-locale="auto"
             data-currency="eur">
     </script>

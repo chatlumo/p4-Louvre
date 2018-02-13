@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Manager\OrderManager;
+use AppBundle\Service\PriceCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -12,25 +13,30 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\OrderType;
 use AppBundle\Form\TicketsFormType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Router;
 
 /**
  * Class OrderController
  * @package AppBundle\Controller
+ * @Route("/{_locale}", defaults={"_locale": "fr"}, requirements={"_locale": "en|fr"})
  */
 class OrderController extends Controller
 {
 
     /**
-     * @Route("/", name="step1")
+     * @Route(
+     *     "/",
+     *     name="step1"
+     * )
      * @param Request $request
      * @param OrderManager $orderManager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function step1Action(Request $request, OrderManager $orderManager)
+    public function step1Action(Request $request, OrderManager $orderManager, Router $router)
     {
         //Step 1 : order informations
         $order = $orderManager->initOrder();
-
+        dump($router->generate('step1'));
 
         $form1 = $this->createForm(OrderType::class, $order);
         $form1->handleRequest($request);
@@ -44,7 +50,6 @@ class OrderController extends Controller
         }
 
         return $this->render('default/index.html.twig', array(
-            'btnSubmit' => "Passer à l'étape 2",
             'form' => $form1->createView(),
         ));
     }
@@ -53,9 +58,10 @@ class OrderController extends Controller
      * @Route("/step2", name="step2")
      * @param Request $request
      * @param OrderManager $orderManager
+     * @param PriceCalculator $priceCalculator
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function step2Action(Request $request, OrderManager $orderManager)
+    public function step2Action(Request $request, OrderManager $orderManager, PriceCalculator $priceCalculator)
     {
         //Step 2 : visitor informations
         $order = $orderManager->getOrder();
@@ -63,17 +69,18 @@ class OrderController extends Controller
         $form2 = $this->createForm(TicketsFormType::class, $order);
         $form2->handleRequest($request);
 
+        dump($this->getDoctrine()->getRepository('AppBundle:Order')->countAvailableTickets($order->getDateOfVisit()));
+
         // Step 3 : verifying & pay
         if ($form2->isSubmitted() && $form2->isValid()) {
 
-            $this->get('priceCalculator')->computePrice($order);
+            $priceCalculator->computePrice($order);
 
             return $this->redirectToRoute('step3');
         }
 
         // Step 2 : ticket details
-        return $this->render('default/index.html.twig', array(
-            'btnSubmit' => "Passer à l'étape 3",
+        return $this->render('default/step2.html.twig', array(
             'form' => $form2->createView(),
         ));
 

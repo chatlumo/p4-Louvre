@@ -23,21 +23,21 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('lastname', TextType::class, array(
-                'label' => 'Nom',
+                'label' => 'app.lastname',
 
             ))
             ->add('firstname', TextType::class, array(
-                'label' => 'Prénom',
+                'label' => 'app.firstname',
 
             ))
             ->add('birthdate', BirthdayType::class, array(
-                'label' => 'Date de naissance',
+                'label' => 'app.birthdate',
                 'html5' => true,
                 'format' => 'dd/MM/yyyy',
 
             ))
             ->add('country', CountryType::class, array(
-                'label' => 'Pays',
+                'label' => 'app.country',
                 'preferred_choices' => array('FR'),
                 /*'choices' => array(
                     'France' => 'FR',
@@ -45,7 +45,7 @@ class TicketType extends AbstractType
                 )*/
             ))
             ->add('reducedPrice', CheckboxType::class, array(
-                'label' => 'Je bénéficie du tarif réduit à  10 € (étudiant, employé du musée, employé d\'un service du Ministrère de la Culture, militaire)',
+                'label' => 'app.step2.reduced_price',
                 'required' => false,
 
             ));

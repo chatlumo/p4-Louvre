@@ -9,35 +9,40 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\Order;
+
 class EmailSender
 {
     private $templating;
     private $mailer;
     private $from_email;
 
-    public function __construct(\Twig_Environment $templating, \Swift_Mailer $mailer, string $from_email) {
+    public function __construct(\Twig_Environment $templating, \Swift_Mailer $mailer, $from_email) {
         $this->templating = $templating;
         $this->mailer = $mailer;
         $this->from_email = $from_email;
     }
 
     /**
-     * @param $to
      * @param $subject
-     * @param $object
-     * @param $template
+     * @param Order $order
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function sendEmail($to, $subject, $object, $template) {
-        $message = (new \Swift_Message($subject))
+    public function sendEmail($subject, Order $order) {
+        $template = 'Email/success.html.twig';
+
+        $message = new \Swift_Message($subject);
+        $message
             ->setFrom($this->from_email)
-            ->setTo($to)
+            ->setTo($order->getEmail())
             ->setBody(
                 $this->templating->render(
                     $template,
-                    array('object' => $object)
+                    array(
+                        'order' => $order
+                    )
                 ),
                 'text/html'
             )

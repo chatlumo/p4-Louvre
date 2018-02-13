@@ -124,7 +124,7 @@ class OrderManager
 
 
         //send email to customer
-        $this->emailSender->sendEmail( $order->getEmail(), 'Hello Email', $order, 'Email/success.html.twig');
+        $this->emailSender->sendEmail( 'Hello Email', $order);
 
 
         $this->setSessionOrder($order);

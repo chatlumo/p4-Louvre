@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {{ 'app.success.order.saved'|trans }}<br>
+    {{ 'app.success.email.sent'|trans }}
 
-    Votre commande est bien enregistrée.<br>
-    Vous allez recevoir un email avec votre code de réservation.
-
-    <p>Merci de noter ou d'imprimer votre code de réservation en cas de non réception de cet email : <strong>{{ reference }}</strong></p>
+    <p>{{ 'app.success.print.reference'|trans }} : <strong>{{ reference }}</strong></p>
 
 
 {% endblock %}

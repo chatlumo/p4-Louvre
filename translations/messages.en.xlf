@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="99BB9cc" resname="app.step1.choose.dateOfVisit">
+        <source>app.step1.choose.dateOfVisit</source>
+        <target>Choose date of visit</target>
+      </trans-unit>
+      <trans-unit id="U627gPq" resname="app.step1.choose.ticket">
+        <source>app.step1.choose.ticket</source>
+        <target>Choose a ticket</target>
+      </trans-unit>
+      <trans-unit id="Bk0xCwd" resname="app.step1.ticket.halfday">
+        <source>app.step1.ticket.halfday</source>
+        <target>Ticket demi-journée (entrée à partir de 14h)</target>
+      </trans-unit>
+      <trans-unit id="vPGrG8T" resname="app.step1.ticket.fullday">
+        <source>app.step1.ticket.fullday</source>
+        <target>Ticket journée</target>
+      </trans-unit>
+      <trans-unit id="ltyv5kI" resname="app.step1.nbtickets">
+        <source>app.step1.nbtickets</source>
+        <target>Choisir le nombre de billets souhaités</target>
+      </trans-unit>
+      <trans-unit id="PnjRZtI" resname="app.step1.email.label1">
+        <source>app.step1.email.label1</source>
+        <target>Saisir votre adresse email</target>
+      </trans-unit>
+      <trans-unit id="69DjXV2" resname="app.step1.email.label2">
+        <source>app.step1.email.label2</source>
+        <target>Saisir à nouveau votre adresse email</target>
+      </trans-unit>
+      <trans-unit id="lSghoBr" resname="app.step1.email.error">
+        <source>app.step1.email.error</source>
+        <target>Adresses email différentes !</target>
+      </trans-unit>
+      <trans-unit id="GswBKnw" resname="app.step1.submit">
+        <source>app.step1.submit</source>
+        <target>Passer à l'étape 2</target>
+      </trans-unit>
+      <trans-unit id="Vd6F55A" resname="pay.by.card">
+        <source>pay.by.card</source>
+        <target>Payer par carte bancaire</target>
+      </trans-unit>
+      <trans-unit id="GF5iqnj" resname="app.resume.order">
+        <source>app.resume.order</source>
+        <target>Vous avez choisi %s billet(s)</target>
+      </trans-unit>
+      <trans-unit id="yrBX63a" resname="app.half.day">
+        <source>app.half.day</source>
+        <target>demi-journée</target>
+      </trans-unit>
+      <trans-unit id="CNLeAQ5" resname="app.day">
+        <source>app.day</source>
+        <target>journée</target>
+      </trans-unit>
+      <trans-unit id="TCdErTa" resname="app.resume.order.on">
+        <source>app.resume.order.on</source>
+        <target>pour une visite le</target>
+      </trans-unit>
+      <trans-unit id="swotxXk" resname="app.step3.stripe.secured.payment">
+        <source>app.step3.stripe.secured.payment</source>
+        <target>Paiement sécurisé</target>
+      </trans-unit>
+      <trans-unit id="KsM7rQT" resname="app.step3.stripe.title">
+        <source>app.step3.stripe.title</source>
+        <target>Billeterie Musée du Louvre</target>
+      </trans-unit>
+      <trans-unit id="8Ahw5YQ" resname="app.step3.total_amount">
+        <source>app.step3.total_amount</source>
+        <target>Montant total</target>
+      </trans-unit>
+      <trans-unit id="uhLZXZd" resname="app.birthdate">
+        <source>app.birthdate</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="mbzVSea" resname="app.country">
+        <source>app.country</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit id="FXdA1ue" resname="app.reduced_price">
+        <source>app.reduced_price</source>
+        <target>Tarif réduit</target>
+      </trans-unit>
+      <trans-unit id="lsQ2cn9" resname="app.ticket_price">
+        <source>app.ticket_price</source>
+        <target>Prix du billet</target>
+      </trans-unit>
+      <trans-unit id="aLe1EbC" resname="app.yes">
+        <source>app.yes</source>
+        <target>Oui</target>
+      </trans-unit>
+      <trans-unit id="QP7AnL." resname="app.no">
+        <source>app.no</source>
+        <target>Oui</target>
+      </trans-unit>
+      <trans-unit id="SnF7UwH" resname="app.step2.submit">
+        <source>app.step2.submit</source>
+        <target>Passer à l'étape 3</target>
+      </trans-unit>
+      <trans-unit id="Ho3ijuC" resname="app.step2.owner">
+        <source>app.step2.owner</source>
+        <target>Titulaire du billet</target>
+      </trans-unit>
+      <trans-unit id="0YB0Mep" resname="app.lastname">
+        <source>app.lastname</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="GID4Flj" resname="app.firstname">
+        <source>app.firstname</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="4XMWvbb" resname="app.step2.reduced_price">
+        <source>app.step2.reduced_price</source>
+        <target>Je bénéficie du tarif réduit à  10 € (étudiant, employé du musée, employé d'un service du Ministère de la Culture, militaire)</target>
+      </trans-unit>
+      <trans-unit id="KiX9k8k" resname="app.step2.form.error.birthdate">
+        <source>app.step2.form.error.birthdate</source>
+        <target>La date de naissance doit être valide.</target>
+      </trans-unit>
+      <trans-unit id="QDq8Kaj" resname="app.step2.form.error.lastname.blank">
+        <source>app.step2.form.error.lastname.blank</source>
+        <target>Merci d'indiquer votre nom de famille.</target>
+      </trans-unit>
+      <trans-unit id="zwYA68f" resname="app.step2.form.error.lastname.short">
+        <source>app.step2.form.error.lastname.short</source>
+        <target>Votre nom doit comporter au moins {{ limit }} caractères.</target>
+      </trans-unit>
+      <trans-unit id="5bQQTTm" resname="app.success.order.saved">
+        <source>app.success.order.saved</source>
+        <target>Votre commande est bien enregistrée.</target>
+      </trans-unit>
+      <trans-unit id="zy0Fy3n" resname="app.success.email.sent">
+        <source>app.success.email.sent</source>
+        <target>Vous allez recevoir un email avec votre code de réservation.</target>
+      </trans-unit>
+      <trans-unit id="7g32Rs0" resname="app.success.print.reference">
+        <source>app.success.print.reference</source>
+        <target>Merci de noter ou d'imprimer votre code de réservation en cas de non réception de cet email</target>
+      </trans-unit>
+      <trans-unit id="zLkEi7B" resname="app.success.reference.to.show">
+        <source>app.success.reference.to.show</source>
+        <target>Voici votre code de réservation à présenter au contrôle du musée</target>
+      </trans-unit>
+      <trans-unit id="yJRThZ0" resname="app.fill.form1.first">
+        <source>app.fill.form1.first</source>
+        <target>Vous devez d'abord remplir ce formulaire.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

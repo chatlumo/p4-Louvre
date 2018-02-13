@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Ticket
 {
+
     /**
      * @var int
      *
@@ -52,12 +53,12 @@ class Ticket
      * @ORM\Column(name="lastname", type="string", length=255)
      *
      * @Assert\NotBlank(
-     *     message="Merci d'indiquer votre nom de famille.",
+     *     message="ticket.lastname.blank",
      *     groups={"step2"}
      * )
      * @Assert\Length(
      *     min=2,
-     *     minMessage="Votre nom doit comporter au moins {{ limit }} caractères.",
+     *     minMessage="ticket.lastname.short",
      *     groups={"step2"}
      * )
      */
@@ -69,12 +70,12 @@ class Ticket
      * @ORM\Column(name="firstname", type="string", length=255)
      *
      * @Assert\NotBlank(
-     *     message="Merci d'indiquer votre prénom.",
+     *     message="ticket.firstname.blank",
      *     groups={"step2"}
      * )
      * @Assert\Length(
      *     min=2,
-     *     minMessage="Votre prénom doit comporter au moins {{ limit }} caractères.",
+     *     minMessage="ticket.firstname.short",
      *     groups={"step2"}
      * )
      */
@@ -86,11 +87,6 @@ class Ticket
      * @ORM\Column(name="country", type="string", length=255)
      *
      * @Assert\NotBlank(groups={"step2"})
-     * @Assert\Length(
-     *     min=2,
-     *     minMessage="Le nom du pays doit comporter au moins {{ limit }} caractères.",
-     *     groups={"step2"}
-     * )
      */
     private $country;
 
@@ -103,8 +99,8 @@ class Ticket
      * @Assert\Range(
      *     min = "-100 years",
      *     max = "today",
-     *     minMessage = "La date de naissance doit être valide.",
-     *     maxMessage = "La date de naissance doit être valide.",
+     *     minMessage = "ticket.birthdate",
+     *     maxMessage = "ticket.birthdate",
      *     groups={"step2"}
      * )
      */
