@@ -16,7 +16,7 @@
         Ticket {{ loop.index }}<br>
         {{ ticket.lastname|upper }} {{ ticket.firstname }}<br>
         {{ 'app.birthdate'|trans }} : {{ ticket.birthdate|date("d/m/Y") }}<br>
-        {{ 'app.country'|trans }} : {{ ticket.country }}<br>
+        {{ 'app.country'|trans }} : {{ ticket.country|countryname }}<br>
         {{ 'app.reduced_price'|trans }} : {% if ticket.reducedPrice %}{{ 'app.yes'|trans }}{% else %}{{ 'app.no'|trans }}{% endif %}<br>
         {{ 'app.ticket_price'|trans }} : {{ ticket.price }} €
     </div>
