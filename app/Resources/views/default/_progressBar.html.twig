@@ -5,11 +5,13 @@
 
     {% for i in 1..4 %}
         {% set step = 'step' ~ i %}
+        {% set label = 'app.progress.' ~ step %}
+        {% set details = 'app.progress.' ~ step ~ '.details' %}
         <div class="col-md-3 bs-wizard-step{% if (route == step) %} active{% endif %}{% if (stepNumber > loop.index) %} complete{% elseif (stepNumber < loop.index) %} disabled{% endif %}">
-            <div class="text-center bs-wizard-stepnum">{{ 'app.progress.' ~ step|trans }}</div>
+            <div class="text-center bs-wizard-stepnum">{{ label|trans }}</div>
             <div class="progress"><div class="progress-bar"></div></div>
             <a href="{{ path(step) }}" class="bs-wizard-dot"></a>
-            <div class="bs-wizard-info text-center">{{ 'app.progress.' ~ step ~ '.details'|trans }}</div>
+            <div class="bs-wizard-info text-center">{{ details|trans }}</div>
         </div>
     {% endfor %}
     </div>

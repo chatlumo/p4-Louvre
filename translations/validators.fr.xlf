@@ -65,6 +65,14 @@
         <source>ticket.firstname.short</source>
         <target>Votre prénom doit comporter au moins {{ limit }} caractères.</target>
       </trans-unit>
+      <trans-unit id="jgn4viJ" resname="ticket.lastname.alpha">
+        <source>ticket.lastname.alpha</source>
+        <target>Votre nom ne peut comporter de chiffres.</target>
+      </trans-unit>
+      <trans-unit id="qu1Ay5K" resname="ticket.firstname.alpha">
+        <source>ticket.firstname.alpha</source>
+        <target>Votre prénom ne peut comporter de chiffres.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

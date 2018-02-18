@@ -52,6 +52,11 @@ class Ticket
      *
      * @ORM\Column(name="lastname", type="string", length=255)
      *
+     * @Assert\Type(
+     *     type="alpha",
+     *     message="ticket.lastname.alpha",
+     *     groups={"step2"}
+     * )
      * @Assert\NotBlank(
      *     message="ticket.lastname.blank",
      *     groups={"step2"}
@@ -69,6 +74,11 @@ class Ticket
      *
      * @ORM\Column(name="firstname", type="string", length=255)
      *
+     * @Assert\Type(
+     *     type="alpha",
+     *     message="ticket.firstname.alpha",
+     *     groups={"step2"}
+     * )
      * @Assert\NotBlank(
      *     message="ticket.firstname.blank",
      *     groups={"step2"}

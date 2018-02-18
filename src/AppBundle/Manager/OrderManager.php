@@ -99,7 +99,7 @@ class OrderManager
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function completeOrder(Order $order, $transId) {
+    public function completeOrder(Order $order, $transId, $locale) {
         //Set transId
         $order->setTransId($transId);
         //Set orderDate
@@ -124,7 +124,12 @@ class OrderManager
 
 
         //send email to customer
-        $this->emailSender->sendEmail( 'Hello Email', $order);
+        if ($locale = 'en') {
+            $subject = 'Your ticket(s) order at Musée du Louvre';
+        } else {
+            $subject = 'Votre commande de billet(s) au Musée du Louvre';
+        }
+        $this->emailSender->sendEmail( $subject, $order);
 
 
         $this->setSessionOrder($order);

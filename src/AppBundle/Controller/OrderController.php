@@ -30,13 +30,13 @@ class OrderController extends Controller
      * )
      * @param Request $request
      * @param OrderManager $orderManager
+     * @param Router $router
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function step1Action(Request $request, OrderManager $orderManager, Router $router)
     {
         //Step 1 : order informations
         $order = $orderManager->initOrder();
-        dump($router->generate('step1'));
 
         $form1 = $this->createForm(OrderType::class, $order);
         $form1->handleRequest($request);
@@ -69,7 +69,6 @@ class OrderController extends Controller
         $form2 = $this->createForm(TicketsFormType::class, $order);
         $form2->handleRequest($request);
 
-        dump($this->getDoctrine()->getRepository('AppBundle:Order')->countAvailableTickets($order->getDateOfVisit()));
 
         // Step 3 : verifying & pay
         if ($form2->isSubmitted() && $form2->isValid()) {
@@ -141,7 +140,7 @@ class OrderController extends Controller
         }
 
         // update and persist order
-        $orderManager->completeOrder($order, $charge->id);
+        $orderManager->completeOrder($order, $charge->id, $request->getLocale());
 
         return $this->redirectToRoute("step4");
     }
