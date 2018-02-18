@@ -2,26 +2,42 @@
 
 {% block body %}
 
-
+<p>
     {% transchoice order.nbTickets %}
         app.resume.order.some
     {% endtranschoice %}
 
 
     {% if not order.fullDay %}{{ 'app.half.day'|trans }}{% else %}{{ 'app.day'|trans }}{% endif %}
- {{ 'app.resume.order.on'|trans }} {{ order.dateOfVisit|date("d/m/Y") }} :
+ {{ 'app.resume.order.on'|trans }} {{ order.dateOfVisit|date("d/m/Y") }} :</p>
 <br>
+<table class="table table-responsive  table-striped">
+    <thead>
+    <tr>
+        <th>{{ 'app.firstname'|trans }}</th>
+        <th>{{ 'app.lastname'|trans }}</th>
+        <th>{{ 'app.birthdate'|trans }}</th>
+        <th>{{ 'app.country'|trans }}</th>
+        <th>{{ 'app.reduced_price'|trans }}</th>
+        <th>{{ 'app.ticket_price'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
 {% for ticket in order.tickets %}
-    <div class="ticket">
-        Ticket {{ loop.index }}<br>
-        {{ ticket.lastname|upper }} {{ ticket.firstname }}<br>
-        {{ 'app.birthdate'|trans }} : {{ ticket.birthdate|date("d/m/Y") }}<br>
-        {{ 'app.country'|trans }} : {{ ticket.country|countryname }}<br>
-        {{ 'app.reduced_price'|trans }} : {% if ticket.reducedPrice %}{{ 'app.yes'|trans }}{% else %}{{ 'app.no'|trans }}{% endif %}<br>
-        {{ 'app.ticket_price'|trans }} : {{ ticket.price }} €
-    </div>
+    <tr>
+        <td>{{ ticket.lastname|upper }}</td>
+        <td>{{ ticket.firstname|upper }}</td>
+        <td>{{ ticket.birthdate|date("d/m/Y") }}</td>
+        <td>{{ ticket.country|countryname }}</td>
+        <td>{% if ticket.reducedPrice %}{{ 'app.yes'|trans }}{% else %}{{ 'app.no'|trans }}{% endif %}</td>
+        <td>{{ ticket.price|number_format(2, ',', ' ') }} €</td>
+    </tr>
 {% endfor %}
-{{ 'app.step3.total_amount'|trans }} : {{ order.totalAmount }} €
+    </tbody>
+</table>
+
+    <p>{{ 'app.step3.total_amount'|trans }} : {{ order.totalAmount|number_format(2, ',', ' ') }} €</p>
+
 
 <form action="{{ path('checkout') }}" method="POST">
     <script
@@ -36,4 +52,5 @@
             data-currency="eur">
     </script>
 </form>
+
 {% endblock %}

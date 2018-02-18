@@ -7,30 +7,113 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/languages.min.css">
     {% block stylesheets %}
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <style>
+        #main {background: rgba(255, 255, 255, 0.9);}
+        body {background: #bdbdbd url('/images/louvre-nb.jpg') no-repeat fixed center 70px;}
+
+        .sidebar {font-size: 0.8rem;}
+
+        a {color: grey;}
+        a:hover {color: black;}
+
+
+        label, legend {font-weight: bold;}
+        #order_fullDay label {font-weight: normal;}
+        /*
+        #tickets_form > legend {font-weight: normal;}
+        */
+
+        .stripe-button-el span { color:red;}
+
+
+
+        /*Form Wizard*/
+        .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+        .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+        .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+        .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
+        .bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;}
+        .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; }
+        .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+        .bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+        .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+        .bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+        .bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+        .bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+        .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+        .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+        .bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+        .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+        .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+        /*END Form Wizard*/
+    </style>
 </head>
 <body>
-    <div class="container">
-{% for message in app.session.flashBag.get('error') %}
-    <div class="alert alert-danger">
-        {{ message|trans }}
-    </div>
-{% endfor %}
-{% for message in app.session.flashBag.get('notice') %}
-    <div class="alert alert-info">
-        {{ message|trans }}
-    </div>
-{% endfor %}
-        {% for message in app.session.flashBag.get('success') %}
-            <div class="alert alert-success">
-                {{ message|trans }}
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+        <a class="navbar-brand d-none d-md-inline" href="#">
+            <img src="/images/logo_email.jpg" width="" height="50" class="d-inline-block align-top" alt="Le Louvre">
+        </a>
+        <h1 class="navbar-brand mb-0">Billetterie officielle</h1>
+        <div class="" id="">
+            <div class="ml-auto">
+                <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}" hreflang="fr"><span class="lang-sm mr-2" lang="fr"></span></a>
+                <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}" hreflang="en"><span class="lang-sm" lang="en"></span></a>
             </div>
-        {% endfor %}
-{% block body %}
-<h1>Hello, world!</h1>
-{% endblock %}
+        </div>
+    </header>
+    <div id="main" class="container py-4">
+        <div class="containe">
+            <h1>{{ 'Musée du Louvre'|trans }}</h1>
+            <p>{{ 'app.home.desc'|trans }}</p>
+        </div>
+
+        {% block content %}
+            {% include 'default/_progressBar.html.twig' %}
+            <div class="container">
+                {% for message in app.session.flashBag.get('error') %}
+                <div class="alert alert-danger">
+                    {{ message|trans }}
+                </div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-info">
+                    {{ message|trans }}
+                </div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('success') %}
+                <div class="alert alert-success">
+                    {{ message|trans }}
+                </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-lg-9 mb-4">
+                        {% block body %}
+                            <h1>Hello, world!</h1>
+                        {% endblock %}
+                    </div>
+                    <div class="col-lg-3 sidebar bg-dark pt-3 text-white">
+                        <p>{{ 'app.sidebar.p1'|trans }}</p>
+                        <p>{{ 'app.sidebar.p2'|trans }}</p>
+                        <p>{{ 'app.sidebar.p3'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        <div class="container">
+            <div class="row bg-white mt-2">
+                <nav class="nav">
+                    <a class="nav-link" href="{{ path('step1') }}">Billetterie</a>
+                    <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                    <a class="nav-link" href="{{ path('cgv') }}">CGV</a>
+                    <a class="nav-link" href="https://www.louvre.fr/">Musée du Louvre</a>
+                </nav>
+            </div>
+        </div>
     </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

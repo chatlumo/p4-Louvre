@@ -143,13 +143,13 @@ class OrderController extends Controller
         // update and persist order
         $orderManager->completeOrder($order, $charge->id);
 
-        return $this->redirectToRoute("success");
+        return $this->redirectToRoute("step4");
     }
 
     /**
      * @Route(
      *     "/success",
-     *     name="success"
+     *     name="step4"
      * )
      * @param OrderManager $orderManager
      * @param SessionInterface $session
@@ -165,5 +165,27 @@ class OrderController extends Controller
             'order' => $order,
             'reference' => $reference
         ));
+    }
+
+    /**
+     * @Route(
+     *     "/contact",
+     *     name="contact"
+     * )
+     */
+    public function contactAction()
+    {
+        return $this->render('default/contact.html.twig');
+    }
+
+    /**
+     * @Route(
+     *     "/cgv",
+     *     name="cgv"
+     * )
+     */
+    public function cgvAction()
+    {
+        return $this->render('default/cgv.html.twig');
     }
 }

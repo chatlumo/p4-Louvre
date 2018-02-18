@@ -21,7 +21,7 @@ class Order
 {
     const ORDER_FULL_DAY = true;
     const ORDER_HALF_DAY = false;
-    const MAX_TICKETS_FOR_1_DATE = 2;
+    const MAX_TICKETS_FOR_1_DATE = 3;
 
     /**
      * @var int
