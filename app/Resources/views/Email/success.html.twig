@@ -1,13 +1,13 @@
 <p><img src="{{ absolute_url(asset('images/logo_email.jpg')) }}" alt="Louvre"></p>
-<h1>Votre commande n° {{ order.reference }}</h1>
+<h1>{{ 'app.email.success.votre.commande'|trans }} {{ order.reference }}</h1>
 
-<p>Bonjour,<br>
-    Merci pour votre commande de {{ order.nbTickets }} tickets {% if not order.fullDay %}demi-{% endif %}journée pour le {{ order.dateOfVisit|date('d/m/Y') }}.
+<p>{{ 'app.email.success.bonjour'|trans }},<br>
+    {{ 'app.email.success.merci.commande'|trans }} {{ order.nbTickets }} ticket(s) {% if not order.fullDay %}{{ 'app.half.day'|trans }}{% else %}{{ 'app.day'|trans }}{% endif %} {{ 'app.email.success.pour.le'|trans }} {{ order.dateOfVisit|date('d/m/Y') }}.
 </p>
 <p>{{ 'app.success.reference.to.show'|trans }} : <strong>{{ order.reference }}</strong></p>
-<p>Si vous bénéficiez d'un prix réduit, pensez à préparer votre justificatif qui vous sera demandé à l'entrée.</p>
+<p>{{ 'app.email.success.beneficiaire.tarif.reduit'|trans }}</p>
 
-<h2>Votre billet concerne :</h2>
+<h2>{{ 'app.email.success.concerne'|trans }}</h2>
 <table class="table table-responsive  table-striped">
     <thead>
     <tr>
@@ -35,4 +35,4 @@
 
 <p>{{ 'app.step3.total_amount'|trans }} : {{ order.totalAmount|number_format(2, ',', ' ') }} €</p>
 
-<p>A bientôt au Musée du Louvre</p>
+<p>{{ 'app.email.success.a.bientot'|trans }}</p>
