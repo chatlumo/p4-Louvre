@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\OrderType;
 use AppBundle\Form\TicketsFormType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Router;
 
 /**
  * Class OrderController
@@ -30,10 +29,9 @@ class OrderController extends Controller
      * )
      * @param Request $request
      * @param OrderManager $orderManager
-     * @param Router $router
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function step1Action(Request $request, OrderManager $orderManager, Router $router)
+    public function step1Action(Request $request, OrderManager $orderManager)
     {
         //Step 1 : order informations
         $order = $orderManager->initOrder();
