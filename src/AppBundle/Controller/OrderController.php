@@ -115,7 +115,6 @@ class OrderController extends Controller
     public function checkoutAction(Request $request, OrderManager $orderManager)
     {
         $order = $orderManager->getOrder();
-
         Stripe::setApiKey($this->getParameter('stripe_secret_key'));
 
         // Get the credit card details submitted by the form
