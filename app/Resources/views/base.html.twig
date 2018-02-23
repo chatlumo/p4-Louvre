@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}{{ 'Billetterie Musée du Louvre'|trans }}{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/languages.min.css">
@@ -59,19 +59,20 @@
         </a>
         <h1 class="navbar-brand mb-0">Billetterie officielle</h1>
         <div class="" id="">
+            {% set route = app.request.attributes.get('_route') == null ? 'step1':app.request.attributes.get('_route') %}
             <div class="ml-auto">
-                <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}" hreflang="fr"><span class="lang-sm mr-2" lang="fr"></span></a>
-                <a href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}" hreflang="en"><span class="lang-sm" lang="en"></span></a>
+                <a href="{{ path(route, {_locale: 'fr'}) }}" hreflang="fr"><span class="lang-sm mr-2" lang="fr"></span></a>
+                <a href="{{ path(route, {_locale: 'en'}) }}" hreflang="en"><span class="lang-sm" lang="en"></span></a>
             </div>
         </div>
     </header>
     <div id="main" class="container py-4">
-        <div class="containe">
-            <h1>{{ 'Musée du Louvre'|trans }}</h1>
-            <p>{{ 'app.home.desc'|trans }}</p>
-        </div>
-
         {% block content %}
+            <div class="container">
+                <h1>{{ 'Musée du Louvre'|trans }}</h1>
+                <p>{{ 'app.home.desc'|trans }}</p>
+            </div>
+
             {% include 'default/_progressBar.html.twig' %}
             <div class="container">
                 {% for message in app.session.flashBag.get('error') %}

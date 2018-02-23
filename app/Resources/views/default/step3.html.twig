@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ parent() }} - Etape 3/4{% endblock %}
+
 {% block body %}
 
 <p>
@@ -26,7 +28,7 @@
 {% for ticket in order.tickets %}
     <tr>
         <td>{{ ticket.lastname|upper }}</td>
-        <td>{{ ticket.firstname|upper }}</td>
+        <td>{{ ticket.firstname }}</td>
         <td>{{ ticket.birthdate|date("d/m/Y") }}</td>
         <td>{{ ticket.country|countryname }}</td>
         <td>{% if ticket.reducedPrice %}{{ 'app.yes'|trans }}{% else %}{{ 'app.no'|trans }}{% endif %}</td>
