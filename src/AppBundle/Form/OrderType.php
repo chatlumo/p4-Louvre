@@ -28,9 +28,10 @@ class OrderType extends AbstractType
         $builder
             ->add('dateOfVisit', DateType::class, array(
                 'html5' => true,
-                'format' => 'dd/MM/yyyy',
+                //'format' => 'dd/MM/yyyy',
                 'label' => 'app.step1.choose.dateOfVisit',
-                'years' => range($thisYear,$maxYear)
+                'years' => range($thisYear,$maxYear),
+                'widget' => 'single_text'
 
             ))
             ->add('fullDay', ChoiceType::class, array(

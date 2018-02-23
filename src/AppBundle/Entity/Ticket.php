@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Ticket
 {
+    const REDUCED_PRICE = true;
+    const NO_REDUCED_PRICE = false;
 
     /**
      * @var int
@@ -38,7 +40,7 @@ class Ticket
      * @ORM\Column(name="reducedPrice", type="boolean")
      *
      */
-    private $reducedPrice = false;
+    private $reducedPrice = self::NO_REDUCED_PRICE;
 
     /**
      * @var float
@@ -52,11 +54,6 @@ class Ticket
      *
      * @ORM\Column(name="lastname", type="string", length=255)
      *
-     * @Assert\Type(
-     *     type="alpha",
-     *     message="ticket.lastname.alpha",
-     *     groups={"step2"}
-     * )
      * @Assert\NotBlank(
      *     message="ticket.lastname.blank",
      *     groups={"step2"}
@@ -74,11 +71,6 @@ class Ticket
      *
      * @ORM\Column(name="firstname", type="string", length=255)
      *
-     * @Assert\Type(
-     *     type="alpha",
-     *     message="ticket.firstname.alpha",
-     *     groups={"step2"}
-     * )
      * @Assert\NotBlank(
      *     message="ticket.firstname.blank",
      *     groups={"step2"}
