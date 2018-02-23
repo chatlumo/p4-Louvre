@@ -24,6 +24,8 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
+        "phpunit/php-code-coverage": "^5.3",
+        "phpunit/phpunit": "^6.5",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "stripe/stripe-php": "^5.9",
