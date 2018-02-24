@@ -109,6 +109,8 @@ class OrderControllerTest extends WebTestCase
 
         $client->submit($form);
 
+        //dump($client);
+
         $crawler = $client->followRedirect();
 
         //echo $client->getResponse()->getContent();

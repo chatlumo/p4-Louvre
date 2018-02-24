@@ -137,7 +137,7 @@ class OrderController extends Controller
         }
 
         // update and persist order
-        $orderManager->completeOrder($order, $charge->id, $request->getLocale());
+        $orderManager->completeOrder($order, $charge->id);
 
         return $this->redirectToRoute("step4");
     }

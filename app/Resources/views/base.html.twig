@@ -57,7 +57,7 @@
         <a class="navbar-brand d-none d-md-inline" href="#">
             <img src="/images/logo_email.jpg" width="" height="50" class="d-inline-block align-top" alt="Le Louvre">
         </a>
-        <h1 class="navbar-brand mb-0">Billetterie officielle</h1>
+        <h1 class="navbar-brand mb-0">{{ 'Billetterie officielle'|trans }}</h1>
         <div class="" id="">
             {% set route = app.request.attributes.get('_route') == null ? 'step1':app.request.attributes.get('_route') %}
             <div class="ml-auto">

@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
       <trans-unit id="TxTv2qJ" resname="order.dateOfVisit.past">
         <source>order.dateOfVisit.past</source>
-        <target>La date de visite ne peut être dans le passé.</target>
+        <target>The date of visit cannot be in the past.</target>
       </trans-unit>
       <trans-unit id="icZL.VE" resname="order.dateOfVisit.max">
         <source>order.dateOfVisit.max</source>
-        <target>La date de visite doit être inférieure 9 mois.</target>
+        <target>The visit date must be less than 9 months.</target>
       </trans-unit>
       <trans-unit id="jEPNczI" resname="order.reference.blank">
         <source>order.reference.blank</source>
-        <target>La référence ne peut être vide !</target>
+        <target>The reference cannot be empty!</target>
       </trans-unit>
       <trans-unit id="yLtts3l" resname="order.transaction.empty">
         <source>order.transaction.empty</source>
-        <target>Le numéro de transaction ne peut être vide !</target>
+        <target>The transaction number cannot be empty!</target>
       </trans-unit>
       <trans-unit id="UsNoxro" resname="order.nbtickets.min">
         <source>order.nbtickets.min</source>
-        <target>Vous devez choisir au moins 1 ticket</target>
+        <target>You must choose at least 1 ticket</target>
       </trans-unit>
       <trans-unit id="ykMfKOw" resname="order.nbtickets.max">
         <source>order.nbtickets.max</source>
-        <target>Vous ne pouvez pas choisir plus de 10 tickets</target>
+        <target>You can choose no more than 10 tickets</target>
       </trans-unit>
       <trans-unit id="BN7g5XA" resname="app.dayOfVisit.max.tickets.sold">
         <source>app.dayOfVisit.max.tickets.sold</source>
-        <target>Tous les billets ont été vendus pour cette date.</target>
+        <target>All tickets have been sold for that date.</target>
       </trans-unit>
       <trans-unit id="79Nu7uP" resname="app.dayOfVisit.is.closing.day">
         <source>app.dayOfVisit.is.closing.day</source>
-        <target>Le musée est fermé le mardi. Le dimanche n'est pas ouvert à la réservation.</target>
+        <target>The museum is closed on Tuesday. Sunday is not open for booking.</target>
       </trans-unit>
       <trans-unit id="xRJYSyx" resname="app.dayOfVisit.is.holiday">
         <source>app.dayOfVisit.is.holiday</source>
-        <target>Le musée est fermé à cette date.</target>
+        <target>The museum is closed on this date.</target>
       </trans-unit>
       <trans-unit id="Opbt36q" resname="app.full_day.not_available">
         <source>app.full_day.not_available</source>
-        <target>Le billet journée n'est plus disponible pour le jour même, veuillez choisir le billet demi-journée.</target>
+        <target>Full-day ticket is no longer available for the same day, please select half-day ticket.</target>
       </trans-unit>
       <trans-unit id="X3FLeub" resname="ticket.birthdate">
         <source>ticket.birthdate</source>
-        <target>La date de naissance doit être valide.</target>
+        <target>The birthdate must be valid.</target>
       </trans-unit>
       <trans-unit id="YwStCi2" resname="ticket.lastname.blank">
         <source>ticket.lastname.blank</source>
-        <target>Merci d'indiquer votre nom de famille.</target>
+        <target>Please enter your last name.</target>
       </trans-unit>
       <trans-unit id="ayD4msN" resname="ticket.lastname.short">
         <source>ticket.lastname.short</source>
-        <target>Votre nom doit comporter au moins {{ limit }} caractères.</target>
+        <target>Your name must have at least {{ limit }} characters.</target>
       </trans-unit>
       <trans-unit id="spzUdtS" resname="ticket.firstname.blank">
         <source>ticket.firstname.blank</source>
-        <target>Merci d'indiquer votre prénom.</target>
+        <target>Please enter your first name.</target>
       </trans-unit>
       <trans-unit id="tj5NHif" resname="ticket.firstname.short">
         <source>ticket.firstname.short</source>
-        <target>Votre prénom doit comporter au moins {{ limit }} caractères.</target>
+        <target>Your first name must have at least {{ limit }}} characters.</target>
       </trans-unit>
     </body>
   </file>

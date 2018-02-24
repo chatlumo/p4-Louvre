@@ -13,29 +13,37 @@ use AppBundle\Entity\Ticket;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use AppBundle\Exception\OrderManagerException;
+use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use AppBundle\Service\EmailSender;
 
 
+/**
+ * Class OrderManager
+ * @package AppBundle\Manager
+ */
 class OrderManager
 {
     private $session;
     private $em;
     private $validator;
     private $emailSender;
+    private $translator;
+
 
     /**
      * OrderManager constructor.
      * @param SessionInterface $session
      * @param EntityManagerInterface $em
      * @param ValidatorInterface $validator
-     * @param \Twig_Environment $templating
-     * @param \Swift_Mailer $mailer
+     * @param Translator $translator
+     * @param EmailSender $emailSender
      */
-    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator, EmailSender $emailSender) {
+    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator, Translator $translator, EmailSender $emailSender) {
         $this->session = $session;
         $this->em = $em;
         $this->validator = $validator;
+        $this->translator = $translator;
         $this->emailSender = $emailSender;
     }
 
@@ -99,7 +107,7 @@ class OrderManager
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function completeOrder(Order $order, $transId, $locale) {
+    public function completeOrder(Order $order, $transId) {
         //Set transId
         $order->setTransId($transId);
         //Set orderDate
@@ -124,11 +132,7 @@ class OrderManager
 
 
         //send email to customer
-        if ($locale = 'en') {
-            $subject = 'Your ticket(s) order at Musée du Louvre';
-        } else {
-            $subject = 'Votre commande de billet(s) au Musée du Louvre';
-        }
+        $subject = $this->translator->trans('app.email.subject');
         $this->emailSender->sendEmail( $subject, $order);
 
 

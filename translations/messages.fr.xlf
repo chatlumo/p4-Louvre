@@ -1,157 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
       <trans-unit id="99BB9cc" resname="app.step1.choose.dateOfVisit">
         <source>app.step1.choose.dateOfVisit</source>
-        <target>Choose date of visit</target>
+        <target>Choisir la date de visite</target>
       </trans-unit>
       <trans-unit id="U627gPq" resname="app.step1.choose.ticket">
         <source>app.step1.choose.ticket</source>
-        <target>Choose a ticket</target>
+        <target>Choisir un billet</target>
       </trans-unit>
       <trans-unit id="Bk0xCwd" resname="app.step1.ticket.halfday">
         <source>app.step1.ticket.halfday</source>
-        <target>Half day ticket (entrance from 2 PM)</target>
+        <target>Ticket demi-journée (entrée à partir de 14h)</target>
       </trans-unit>
       <trans-unit id="vPGrG8T" resname="app.step1.ticket.fullday">
         <source>app.step1.ticket.fullday</source>
-        <target>Full day ticket</target>
+        <target>Ticket journée</target>
       </trans-unit>
       <trans-unit id="ltyv5kI" resname="app.step1.nbtickets">
         <source>app.step1.nbtickets</source>
-        <target>Choose number of tickets</target>
+        <target>Choisir le nombre de billets souhaités</target>
       </trans-unit>
       <trans-unit id="PnjRZtI" resname="app.step1.email.label1">
         <source>app.step1.email.label1</source>
-        <target>Type your email address</target>
+        <target>Saisir votre adresse email</target>
       </trans-unit>
       <trans-unit id="69DjXV2" resname="app.step1.email.label2">
         <source>app.step1.email.label2</source>
-        <target>Type again your email address</target>
+        <target>Saisir à nouveau votre adresse email</target>
       </trans-unit>
       <trans-unit id="lSghoBr" resname="app.step1.email.error">
         <source>app.step1.email.error</source>
-        <target>Email addresses are not the same !</target>
+        <target>Adresses email différentes !</target>
       </trans-unit>
       <trans-unit id="GswBKnw" resname="app.step1.submit">
         <source>app.step1.submit</source>
-        <target>Go to step 2</target>
+        <target>Passer à l'étape 2</target>
       </trans-unit>
       <trans-unit id="Vd6F55A" resname="pay.by.card">
         <source>pay.by.card</source>
-        <target>Pay by card</target>
+        <target>Payer par carte bancaire</target>
       </trans-unit>
       <trans-unit id=".FGN8sd" resname="app.resume.order.one">
         <source>app.resume.order.one</source>
-        <target>You choose 1 ticket</target>
+        <target>Vous avez choisi 1 billet</target>
       </trans-unit>
       <trans-unit id="3x2t2bu" resname="app.resume.order.some">
         <source>app.resume.order.some</source>
-        <target>{1} You choose 1 ticket|]1,Inf[ You choose %count% tickets</target>
+        <target>{1} Vous avez choisi 1 billet|]1,Inf[ Vous avez choisi %count% billets</target>
+      </trans-unit>
+      <trans-unit id="6lRWuyc" resname="{1} toto|]1,Inf[ tata">
+        <source>{1} toto|]1,Inf[ tata</source>
+        <target>{1} toto détaillé|]1,Inf[ tata détaillé</target>
       </trans-unit>
       <trans-unit id="yrBX63a" resname="app.half.day">
         <source>app.half.day</source>
-        <target>half day</target>
+        <target>demi-journée</target>
       </trans-unit>
       <trans-unit id="CNLeAQ5" resname="app.day">
         <source>app.day</source>
-        <target>full day</target>
+        <target>journée</target>
       </trans-unit>
       <trans-unit id="TCdErTa" resname="app.resume.order.on">
         <source>app.resume.order.on</source>
-        <target>for a visit on</target>
+        <target>pour une visite le</target>
       </trans-unit>
       <trans-unit id="swotxXk" resname="app.step3.stripe.secured.payment">
         <source>app.step3.stripe.secured.payment</source>
-        <target>Secured payment</target>
+        <target>Paiement sécurisé</target>
       </trans-unit>
       <trans-unit id="KsM7rQT" resname="app.step3.stripe.title">
         <source>app.step3.stripe.title</source>
-        <target>Ticketing Musée du Louvre</target>
+        <target>Billeterie Musée du Louvre</target>
       </trans-unit>
       <trans-unit id="8Ahw5YQ" resname="app.step3.total_amount">
         <source>app.step3.total_amount</source>
-        <target>Total amount</target>
+        <target>Montant total</target>
       </trans-unit>
       <trans-unit id="uhLZXZd" resname="app.birthdate">
         <source>app.birthdate</source>
-        <target>Birthdate</target>
+        <target>Date de naissance</target>
       </trans-unit>
       <trans-unit id="mbzVSea" resname="app.country">
         <source>app.country</source>
-        <target>Country</target>
+        <target>Pays</target>
       </trans-unit>
       <trans-unit id="FXdA1ue" resname="app.reduced_price">
         <source>app.reduced_price</source>
-        <target>Reduced price</target>
+        <target>Tarif réduit</target>
       </trans-unit>
       <trans-unit id="lsQ2cn9" resname="app.ticket_price">
         <source>app.ticket_price</source>
-        <target>Ticket price</target>
+        <target>Prix du billet</target>
       </trans-unit>
       <trans-unit id="aLe1EbC" resname="app.yes">
         <source>app.yes</source>
-        <target>Yes</target>
+        <target>Oui</target>
       </trans-unit>
       <trans-unit id="QP7AnL." resname="app.no">
         <source>app.no</source>
-        <target>No</target>
+        <target>Non</target>
       </trans-unit>
       <trans-unit id="SnF7UwH" resname="app.step2.submit">
         <source>app.step2.submit</source>
-        <target>Go to step 3</target>
+        <target>Passer à l'étape 3</target>
       </trans-unit>
       <trans-unit id="Ho3ijuC" resname="app.step2.owner">
         <source>app.step2.owner</source>
-        <target>Ticket Owner</target>
+        <target>Titulaire du billet</target>
       </trans-unit>
       <trans-unit id="0YB0Mep" resname="app.lastname">
         <source>app.lastname</source>
-        <target>Lastname</target>
+        <target>Nom</target>
       </trans-unit>
       <trans-unit id="GID4Flj" resname="app.firstname">
         <source>app.firstname</source>
-        <target>Firstname</target>
+        <target>Prénom</target>
       </trans-unit>
       <trans-unit id="4XMWvbb" resname="app.step2.reduced_price">
         <source>app.step2.reduced_price</source>
-        <target>I benefit from the reduced rate of 10 € (student, museum employee, employee of a service of the Ministère de la Culture, military)</target>
+        <target>Je bénéficie du tarif réduit à  10 € (étudiant, employé du musée, employé d'un service du Ministère de la Culture, militaire)</target>
       </trans-unit>
       <trans-unit id="KiX9k8k" resname="app.step2.form.error.birthdate">
         <source>app.step2.form.error.birthdate</source>
-        <target>The birthdate must be valid.</target>
+        <target>La date de naissance doit être valide.</target>
       </trans-unit>
       <trans-unit id="QDq8Kaj" resname="app.step2.form.error.lastname.blank">
         <source>app.step2.form.error.lastname.blank</source>
-        <target>Please enter your last name</target>
+        <target>Merci d'indiquer votre nom de famille.</target>
       </trans-unit>
       <trans-unit id="zwYA68f" resname="app.step2.form.error.lastname.short">
         <source>app.step2.form.error.lastname.short</source>
-        <target>Your name must have at least {{ limit }} characters.</target>
+        <target>Votre nom doit comporter au moins {{ limit }} caractères.</target>
       </trans-unit>
       <trans-unit id="5bQQTTm" resname="app.success.order.saved">
         <source>app.success.order.saved</source>
-        <target>Your order is well recorded.</target>
+        <target>Votre commande est bien enregistrée.</target>
       </trans-unit>
       <trans-unit id="zy0Fy3n" resname="app.success.email.sent">
         <source>app.success.email.sent</source>
-        <target>You will receive an email with your reservation code.</target>
+        <target>Vous allez recevoir un email avec votre code de réservation.</target>
       </trans-unit>
       <trans-unit id="7g32Rs0" resname="app.success.print.reference">
         <source>app.success.print.reference</source>
-        <target>Please note or print your reservation code if you do not receive this email.</target>
+        <target>Merci de noter ou d'imprimer votre code de réservation en cas de non réception de cet email</target>
       </trans-unit>
       <trans-unit id="zLkEi7B" resname="app.success.reference.to.show">
         <source>app.success.reference.to.show</source>
-        <target>Here is your reservation code to present at the museum control.</target>
+        <target>Voici votre code de réservation à présenter au contrôle du musée</target>
       </trans-unit>
       <trans-unit id="yJRThZ0" resname="app.fill.form1.first">
         <source>app.fill.form1.first</source>
-        <target>You must first complete this form.</target>
+        <target>Vous devez d'abord remplir ce formulaire.</target>
       </trans-unit>
       <trans-unit id="GF5iqnj" resname="app.resume.order">
         <source>app.resume.order</source>
@@ -167,48 +171,48 @@
       </trans-unit>
       <trans-unit id="hFTSbEp" resname="app.home.desc">
         <source>app.home.desc</source>
-        <target>Free admission, without ticket, upon presentation of proof for under-18s, 18-25s resident in the European Economic Area, disabled persons and their accompanying persons, and beneficiaries of social minima.
-          Ticket valid only on the selected day.</target>
+        <target>Entrée libre, sans billet, sur présentation d’un justificatif pour les moins de 18 ans, les 18-25 ans résidents de l’Espace Economique Européen, les personnes handicapées et leur accompagnateur, et les bénéficiaires des minima sociaux.
+            Billet valable seulement le jour sélectionné.</target>
       </trans-unit>
       <trans-unit id="ejac1F6" resname="app.sidebar.p1">
         <source>app.sidebar.p1</source>
-        <target>The Louvre Museum is open every day, except Tuesday and January 1st, May 1st and December 25th, from 9am to 6pm, until 9:45pm on Wednesdays and Fridays, except public holidays. The closing of the rooms starts at 5.30 pm and at 9.30 pm on Wednesdays and Fridays.</target>
+        <target>Le musée du Louvre est ouvert tous les jours, sauf les mardis et les 1er janvier, 1er mai et 25 décembre, de 9h à 18h, jusqu'à 21h45 les mercredis et vendredis, à l’exception des jours fériés. La fermeture des salles débute à 17h30 et à 21h30 les mercredis et vendredis.</target>
       </trans-unit>
       <trans-unit id="7obezpY" resname="app.sidebar.p2">
         <source>app.sidebar.p2</source>
-        <target>Reservation is not possible on Sundays.</target>
+        <target>La réservation n'est pas possible pour les dimanches.</target>
       </trans-unit>
       <trans-unit id="hTWg4O8" resname="app.sidebar.p3">
         <source>app.sidebar.p3</source>
-        <target>When choosing the discounted rate, you will need to provide proof of your situation during access control.</target>
+        <target>En choisissant le tarif réduit, vous devrez fournir un justificatif de votre situation lors du contrôle d'accès.</target>
       </trans-unit>
       <trans-unit id="ILpc3Ty" resname="app.progress.step1">
         <source>app.progress.step1</source>
-        <target>Step 1/4</target>
+        <target>Etape 1/4</target>
       </trans-unit>
       <trans-unit id="BXPqlk3" resname="app.progress.step2">
         <source>app.progress.step2</source>
-        <target>Step 2/4</target>
+        <target>Etape 2/4</target>
       </trans-unit>
       <trans-unit id="aZmkhny" resname="app.progress.step3">
         <source>app.progress.step3</source>
-        <target>Step 3/4</target>
+        <target>Etape 3/4</target>
       </trans-unit>
       <trans-unit id="KNT66j." resname="app.progress.step4">
         <source>app.progress.step4</source>
-        <target>Step 4/4</target>
+        <target>Etape 4/4</target>
       </trans-unit>
       <trans-unit id="tmVRiPn" resname="app.progress.step1.details">
         <source>app.progress.step1.details</source>
-        <target>Date of visit</target>
+        <target>Date de visite</target>
       </trans-unit>
       <trans-unit id="UyGwmUz" resname="app.progress.step2.details">
         <source>app.progress.step2.details</source>
-        <target>Visitors</target>
+        <target>Visiteurs</target>
       </trans-unit>
       <trans-unit id="vmlhIol" resname="app.progress.step3.details">
         <source>app.progress.step3.details</source>
-        <target>Summary and Payment</target>
+        <target>Récapitulatif et paiement</target>
       </trans-unit>
       <trans-unit id="aq.FZHy" resname="app.progress.step4.details">
         <source>app.progress.step4.details</source>
@@ -216,31 +220,31 @@
       </trans-unit>
       <trans-unit id="byzT76T" resname="app.email.success.votre.commande">
         <source>app.email.success.votre.commande</source>
-        <target>Your order n°</target>
+        <target>Votre commande n°</target>
       </trans-unit>
       <trans-unit id="sPL.c._" resname="app.email.success.merci.commande">
         <source>app.email.success.merci.commande</source>
-        <target>Thank you for your order of</target>
+        <target>Merci pour votre commande de</target>
       </trans-unit>
       <trans-unit id="1Itusjt" resname="app.email.success.pour.le">
         <source>app.email.success.pour.le</source>
-        <target>on</target>
+        <target>pour le</target>
       </trans-unit>
       <trans-unit id="TbDMuPS" resname="app.email.success.bonjour">
         <source>app.email.success.bonjour</source>
-        <target>Hello</target>
+        <target>Bonjour</target>
       </trans-unit>
       <trans-unit id="TVyEbfZ" resname="app.email.success.beneficiaire.tarif.reduit">
         <source>app.email.success.beneficiaire.tarif.reduit</source>
-        <target>If you benefit from a reduced price, remember to prepare your receipt which will be asked at the entrance.</target>
+        <target>Si vous bénéficiez d'un prix réduit, pensez à préparer votre justificatif qui vous sera demandé à l'entrée.</target>
       </trans-unit>
       <trans-unit id="wyYFB4i" resname="app.email.success.concerne">
         <source>app.email.success.concerne</source>
-        <target>Your ticket concerns:</target>
+        <target>Votre billet concerne :</target>
       </trans-unit>
       <trans-unit id="9e2Vxuj" resname="app.email.success.a.bientot">
         <source>app.email.success.a.bientot</source>
-        <target>See you soon at the Musée du Louvre</target>
+        <target>A bientôt au Musée du Louvre</target>
       </trans-unit>
       <trans-unit id="IBSzcDp" resname="Billetterie du Musée du Louvre">
         <source>Billetterie du Musée du Louvre</source>
@@ -248,15 +252,15 @@
       </trans-unit>
       <trans-unit id="tW3u4Z8" resname="app.email.subject">
         <source>app.email.subject</source>
-        <target>Your ticket(s) order at the Musée du Louvre</target>
+        <target>Votre commande de billet(s) au Musée du Louvre</target>
       </trans-unit>
       <trans-unit id="C_6vdW2" resname="Billetterie Musée du Louvre">
         <source>Billetterie Musée du Louvre</source>
-        <target>Official ticketing service of Musée du Louvre</target>
+        <target>__Billetterie Musée du Louvre</target>
       </trans-unit>
       <trans-unit id="C46vdW6" resname="Billetterie officielle">
         <source>Billetterie officielle</source>
-        <target>Official ticketing</target>
+        <target>Billetterie officielle</target>
       </trans-unit>
     </body>
   </file>
