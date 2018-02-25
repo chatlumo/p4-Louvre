@@ -3,7 +3,7 @@ Billetterie Musée du Louvre
 
 Projet 4 du parcours Chef de Projet Multimedia spécialité développement d'OpenClassrooms.
 
-##Installation de l'application
+## Installation de l'application
 Le guide ci-dessous part du principe du serveur web déjà configuré.
 
 Pré-requis : MySql et PHP 7.1.*
