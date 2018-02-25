@@ -256,7 +256,7 @@
       </trans-unit>
       <trans-unit id="C_6vdW2" resname="Billetterie Musée du Louvre">
         <source>Billetterie Musée du Louvre</source>
-        <target>__Billetterie Musée du Louvre</target>
+        <target>Billetterie Musée du Louvre</target>
       </trans-unit>
       <trans-unit id="C46vdW6" resname="Billetterie officielle">
         <source>Billetterie officielle</source>
