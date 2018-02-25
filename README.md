@@ -26,7 +26,7 @@ Se positionner dans le répertoire choisi pour installer l'application.
 `bin/console doctrine:database:create`
 
 6. Puis :
-`bin/console doctrine:schema:create`
+`bin/console doctrine:schema:update --force`
 
 7. Faire pointer le "document root" du serveur web vers le dossier "web" (p4-Louvre/web).
 
