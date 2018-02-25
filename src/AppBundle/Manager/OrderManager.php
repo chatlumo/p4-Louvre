@@ -13,7 +13,7 @@ use AppBundle\Entity\Ticket;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use AppBundle\Exception\OrderManagerException;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use AppBundle\Service\EmailSender;
 
@@ -36,10 +36,10 @@ class OrderManager
      * @param SessionInterface $session
      * @param EntityManagerInterface $em
      * @param ValidatorInterface $validator
-     * @param Translator $translator
+     * @param TranslatorInterface $translator
      * @param EmailSender $emailSender
      */
-    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator, Translator $translator, EmailSender $emailSender) {
+    public function __construct(SessionInterface $session, EntityManagerInterface $em, ValidatorInterface $validator, TranslatorInterface $translator, EmailSender $emailSender) {
         $this->session = $session;
         $this->em = $em;
         $this->validator = $validator;
