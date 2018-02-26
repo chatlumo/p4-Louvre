@@ -65,6 +65,10 @@
         <source>ticket.firstname.short</source>
         <target>Your first name must have at least {{ limit }}} characters.</target>
       </trans-unit>
+      <trans-unit id="2" resname="app.step1.email.error">
+        <source>app.step1.email.error</source>
+        <target>Please check the email address in both fields.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

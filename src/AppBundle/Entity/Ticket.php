@@ -99,7 +99,7 @@ class Ticket
      *
      * @Assert\Date(groups={"step2"})
      * @Assert\Range(
-     *     min = "-100 years",
+     *     min = "-101 years",
      *     max = "today",
      *     minMessage = "ticket.birthdate",
      *     maxMessage = "ticket.birthdate",

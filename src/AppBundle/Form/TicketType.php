@@ -18,6 +18,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TicketType extends AbstractType
 {
+    protected $minYear, $maxYear;
+
+    public function __construct()
+    {
+        $now = new \DateTime('now');
+        $this->maxYear = (int) $now->format('Y');
+        $this->minYear = $this->maxYear - 100;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -34,6 +42,7 @@ class TicketType extends AbstractType
                 'label' => 'app.birthdate',
                 'html5' => true,
                 'format' => 'dd/MM/yyyy',
+                'years' => range($this->minYear, $this->maxYear)
 
             ))
             ->add('country', CountryType::class, array(

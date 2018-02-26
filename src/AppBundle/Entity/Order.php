@@ -71,6 +71,7 @@ class Order
      * @var bool
      *
      * @ORM\Column(name="fullDay", type="boolean")
+     * @Assert\NotNull(groups={"step1"})
      */
     private $fullDay;
 
@@ -97,6 +98,7 @@ class Order
      *
      * @ORM\Column(name="email", type="string", length=255)
      *
+     * @Assert\NotBlank(groups={"step1"})
      * @Assert\Email(checkMX = true, groups={"step1"})
      */
     private $email;
