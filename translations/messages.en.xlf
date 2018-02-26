@@ -258,6 +258,18 @@
         <source>Billetterie officielle</source>
         <target>Official ticketing</target>
       </trans-unit>
+      <trans-unit id="1">
+        <source>Ce site utilise des cookies pour garantir un bon processus de commande.</source>
+        <target>This site uses cookies to guarantee a good ordering process.</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Ok, j'accepte</source>
+        <target>Okay, I accept.</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>En savoir plus</source>
+        <target>Read more about it</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
