@@ -31,3 +31,5 @@ Se positionner dans le répertoire choisi pour installer l'application.
 7. Faire pointer le "document root" du serveur web vers le dossier "web" (p4-Louvre/web).
 
 L'application est prête à être utilisée !
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9d5dd725c80a4873a066d4d6ff0ed95a)](https://www.codacy.com/app/chatlumo/p4-Louvre?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chatlumo/p4-Louvre&amp;utm_campaign=Badge_Grade)
