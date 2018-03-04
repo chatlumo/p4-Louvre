@@ -143,7 +143,7 @@
       </trans-unit>
       <trans-unit id="zy0Fy3n" resname="app.success.email.sent">
         <source>app.success.email.sent</source>
-        <target>Vous allez recevoir un email avec votre code de réservation.</target>
+        <target>Vous allez recevoir un email sur l'adresse %email% contenant votre code de réservation.</target>
       </trans-unit>
       <trans-unit id="7g32Rs0" resname="app.success.print.reference">
         <source>app.success.print.reference</source>

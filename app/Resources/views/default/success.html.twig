@@ -4,7 +4,7 @@
 
 {% block body %}
     <h2>{{ 'app.success.order.saved'|trans }}</h2>
-    <p>{{ 'app.success.email.sent'|trans }}</p>
+    <p>{% trans with {'%email%': order.email} %}app.success.email.sent{% endtrans %}</p>
 
     <p>{{ 'app.success.print.reference'|trans }} : <strong>{{ reference }}</strong></p>
 

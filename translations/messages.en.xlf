@@ -139,7 +139,7 @@
       </trans-unit>
       <trans-unit id="zy0Fy3n" resname="app.success.email.sent">
         <source>app.success.email.sent</source>
-        <target>You will receive an email with your reservation code.</target>
+        <target>You will receive an email at %email% with your reservation code.</target>
       </trans-unit>
       <trans-unit id="7g32Rs0" resname="app.success.print.reference">
         <source>app.success.print.reference</source>
